@@ -1,3 +1,21 @@
-<p>
-  db-get works!
-</p>
+<br>
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <td>Item name</td>
+      <td>Item image URL</td>
+      <td>Item price</td>
+      <td colspan="2">Actions</td>
+  </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let item of items">
+          <td>{{ item.itemName }}</td>
+          <td>{{ item.itemPictureLocation }}</td>
+          <td>{{ item.itemPrice }}</td>
+          <td><a [routerLink]="['database/edit/', item._id]" class="btn btn-primary">Edit</a></td>
+          <td><a (click) = "deleteItem(item._id)" class="btn btn-danger">Delete</a></td>
+      </tr>
+  </tbody>
+</table>

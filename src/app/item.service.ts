@@ -10,14 +10,36 @@ export class ItemService {
 
   constructor(private http: HttpClient) { }
 
-  AddItem(itemName, itemType, itemPrice) {
+  getItems() {
+    return this.http.get(`${this.uri}`);
+  }
+
+  editItem(id) {
+    return this.http.get(`${this.uri}/edit/${id}`);
+  }
+
+  deleteItem(id) {
+    return this.http.get(`${this.uri}/delete/${id}`);
+  }
+
+  AddItem(itemName, itemPictureLocation, itemPrice) {
     const obj = {
       itemName: itemName,
-      itemType: itemType,
+      itemPictureLocation: itemPictureLocation,
       itemPrice: itemPrice
     };
   console.log(obj);
   this.http.post(`${this.uri}/add`, obj)
     .subscribe(res => console.log('Done'));
+  }
+
+  updateItem(itemName, itemPictureLocation, itemPrice, id) {
+
+    const obj = {
+      itemName: itemName,
+      itemPictureLocation: itemPictureLocation,
+      itemPrice: itemPrice
+    };
+    this.http.post(`${this.uri}/update/${id}`, obj).subscribe(res => console.log('Done'));
   }
 }

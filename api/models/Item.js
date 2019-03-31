@@ -6,7 +6,7 @@ let Business = new Schema({
   itemName: {
     type: String
   },
-  itemType: {
+  itemPictureLocation: {
     type: String
   },
   itemPrice: {

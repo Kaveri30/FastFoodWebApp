@@ -1,3 +1,38 @@
-<p>
-  db-update works!
-</p>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Item name</label>
+        <input type="text" class="form-control" formControlName="itemName" #itemName [(ngModel)] = "item.itemName" />
+      </div>
+      <div *ngIf="angForm.controls['itemName'].invalid && (angForm.controls['itemName'].dirty || angForm.controls['itemName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['itemName'].errors.required">
+          Item name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Item image URL location </label>
+        <input type="text" class="form-control" formControlName="itemPictureLocation" #itemPictureLocation [(ngModel)] = "item.itemPictureLocation" />
+      </div>
+      <div *ngIf="angForm.controls['itemPictureLocation'].invalid && (angForm.controls['itemPictureLocation'].dirty || angForm.controls['itemPictureLocation'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['itemPictureLocation'].errors.required">
+          Item image URL location is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Item price </label>
+        <input type="text" class="form-control" formControlName="itemPrice" #itemPrice [(ngModel)] = "item.itemPrice" />
+      </div>
+      <div *ngIf="angForm.controls['itemPrice'].invalid && (angForm.controls['itemPrice'].dirty || angForm.controls['itemPrice'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['itemPrice'].errors.required">
+          Item price is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="updateItem(itemName.value, itemPictureLocation.value, itemPrice.value)"
+        [disabled]="angForm.invalid"
+        class="btn btn-primary">Update Item</button>
+      </div>
+    </form>
+  </div>
+</div>

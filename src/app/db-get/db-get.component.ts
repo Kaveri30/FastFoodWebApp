@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Item from '../Item';
+import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-db-get',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DbGetComponent implements OnInit {
 
-  constructor() { }
+  items: Item[];
+
+  constructor(private is: ItemService) { }
 
   ngOnInit() {
+    this.is.getItems().subscribe((data: Item[]) => {
+      this.items = data;
+    })
+  }
+
+  deleteItem(id) {
+    this.is.deleteItem(id).subscribe(res => {
+      console.log('Deleted item: ' + id);
+      location.reload();
+    });
   }
 
 }

@@ -18,13 +18,13 @@ export class DbAddComponent implements OnInit {
   createForm() {
     this.angForm = this.fb.group({
       itemName: ['', Validators.required ],
-      itemType: ['', Validators.required ],
+      itemPictureLocation: ['', Validators.required ],
       itemPrice: ['', Validators.required ]
     });
   }
 
-  AddItem(itemName, itemType, itemPrice) {
-    this.is.AddItem(itemName, itemType, itemPrice);
+  AddItem(itemName, itemPictureLocation, itemPrice) {
+    this.is.AddItem(itemName, itemPictureLocation, itemPrice);
   }
 
   ngOnInit() {

@@ -1,5 +1,6 @@
 export default class Item {
   itemName: String;
-  itemType: String;
+  itemPictureLocation: String;
   itemPrice: Number;
+  id_: String;
 }
