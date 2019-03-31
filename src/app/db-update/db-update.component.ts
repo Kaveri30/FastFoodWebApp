@@ -30,8 +30,10 @@ export class DbUpdateComponent implements OnInit {
 
   updateItem(itemName, itemPictureLocation, itemPrice) {
     this.route.params.subscribe(params => {
-      this.is.updateItem(itemName, itemPictureLocation, itemPrice, params['id']);
-      this.router.navigate(['database']);
+      this.is.updateItem(itemName, itemPictureLocation, itemPrice, params['id']).subscribe((data: string) =>{
+        console.log(data);
+        this.router.navigate(['database']);
+        });
     })
   }
 

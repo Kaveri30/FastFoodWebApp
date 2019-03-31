@@ -11,6 +11,7 @@ itemRoutes.route('/add').post(function (req, res) {
   item.save()
     .then(item => {
       res.status(200).json({'item': 'item in added successfully'});
+      console.log('Item added successfully!')
     })
     .catch(err => {
     res.status(400).send("unable to save to database");
@@ -34,6 +35,7 @@ itemRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
   Item.findById(id, function (err, item){
       res.json(item);
+      console.log('Edited item successfully!');
   });
 });
 
@@ -62,7 +64,7 @@ itemRoutes.route('/delete/:id').get(function (req, res) {
     Item.findByIdAndRemove({_id: req.params.id}, function(err, item){
         if(err) res.json(err);
         else res.json('Successfully removed');
-        console.log('deleted item: ');
+        console.log('Successfully deleted item');
     });
 });
 

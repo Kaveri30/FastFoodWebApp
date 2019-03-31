@@ -14,7 +14,7 @@
           <td>{{ item.itemName }}</td>
           <td>{{ item.itemPictureLocation }}</td>
           <td>{{ item.itemPrice }}</td>
-          <td><a [routerLink]="['database/edit/', item._id]" class="btn btn-primary">Edit</a></td>
+          <td><a [routerLink]="['update/', item._id]" class="btn btn-primary">Edit</a></td>
           <td><a (click) = "deleteItem(item._id)" class="btn btn-danger">Delete</a></td>
       </tr>
   </tbody>

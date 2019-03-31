@@ -22,16 +22,15 @@ export class ItemService {
     return this.http.get(`${this.uri}/delete/${id}`);
   }
 
-  AddItem(itemName, itemPictureLocation, itemPrice) {
+  addItem(itemName, itemPictureLocation, itemPrice) {
     const obj = {
       itemName: itemName,
       itemPictureLocation: itemPictureLocation,
       itemPrice: itemPrice
     };
-  console.log(obj);
-  this.http.post(`${this.uri}/add`, obj)
-    .subscribe(res => console.log('Done'));
-  }
+    console.log(obj);
+    return this.http.post(`${this.uri}/add`, obj);
+    }
 
   updateItem(itemName, itemPictureLocation, itemPrice, id) {
 
@@ -40,6 +39,6 @@ export class ItemService {
       itemPictureLocation: itemPictureLocation,
       itemPrice: itemPrice
     };
-    this.http.post(`${this.uri}/update/${id}`, obj).subscribe(res => console.log('Done'));
+    return this.http.post(`${this.uri}/update/${id}`, obj);
   }
 }

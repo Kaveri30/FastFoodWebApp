@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { ItemService } from '../item.service';
 
@@ -11,7 +12,8 @@ export class DbAddComponent implements OnInit {
 
   angForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private is: ItemService) {
+  constructor(private fb: FormBuilder, private is: ItemService, private route: ActivatedRoute,
+    private router: Router) {
     this.createForm();
   }
 
@@ -23,9 +25,13 @@ export class DbAddComponent implements OnInit {
     });
   }
 
-  AddItem(itemName, itemPictureLocation, itemPrice) {
-    this.is.AddItem(itemName, itemPictureLocation, itemPrice);
-  }
+  addItem(itemName, itemPictureLocation, itemPrice) {
+      this.route.params.subscribe(params => {
+        this.is.addItem(itemName, itemPictureLocation, itemPrice).subscribe((data:string) =>{
+          this.router.navigate(['database']);
+        });
+      })
+    }
 
   ngOnInit() {
   }

@@ -14,16 +14,20 @@ export class DbGetComponent implements OnInit {
   constructor(private is: ItemService) { }
 
   ngOnInit() {
+    this.getItems();
+    }
+
+  getItems(): void {
     this.is.getItems().subscribe((data: Item[]) => {
-      this.items = data;
-    })
+    this.items = data;
+    });
   }
 
   deleteItem(id) {
     this.is.deleteItem(id).subscribe(res => {
       console.log('Deleted item: ' + id);
-      location.reload();
-    });
+      this.getItems();
+      });
   }
 
 }

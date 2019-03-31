@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="form-group">
-        <button (click)="AddItem(itemName.value, itemPictureLocation.value, itemPrice.value)"
+        <button (click)="addItem(itemName.value, itemPictureLocation.value, itemPrice.value)"
             [disabled]="angForm.pristine || angForm.invalid"
             class="btn btn-primary">
             Add Item
