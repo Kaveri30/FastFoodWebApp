@@ -10,13 +10,15 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemService } from './item.service';
+import { MenuItemsComponent } from './menu-items/menu-items.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DbAddComponent,
     DbGetComponent,
-    DbUpdateComponent
+    DbUpdateComponent,
+    MenuItemsComponent
   ],
   imports: [
     BrowserModule,
