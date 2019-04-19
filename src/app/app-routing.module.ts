@@ -4,6 +4,7 @@ import { DbAddComponent } from './db-add/db-add.component';
 import { DbGetComponent } from './db-get/db-get.component';
 import { DbUpdateComponent } from './db-update/db-update.component';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'menu',
     component: MenuItemsComponent
+  },
+  {
+    path: 'checkout',
+    component: CheckoutPageComponent
   }
 ];
 

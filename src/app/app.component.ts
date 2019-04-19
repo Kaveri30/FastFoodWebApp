@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
+import { BaseCartItem, CartService } from 'ng-shopping-cart';
 import { NavigationCancel,
         Event,
         NavigationEnd,
@@ -13,24 +14,29 @@ import { NavigationCancel,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   title = 'FastFoodApp';
-  constructor(private _loadingBar: SlimLoadingBarService, private _router: Router) {
-    this._router.events.subscribe((event: Event) => {
+  constructor(private loadingBar: SlimLoadingBarService, private router: Router, private cartService: CartService<BaseCartItem>) {
+    this.router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });
+
   }
+
+
+
   private navigationInterceptor(event: Event): void {
     if (event instanceof NavigationStart) {
-      this._loadingBar.start();
+      this.loadingBar.start();
     }
     if (event instanceof NavigationEnd) {
-      this._loadingBar.complete();
+      this.loadingBar.complete();
     }
     if (event instanceof NavigationCancel) {
-      this._loadingBar.stop();
+      this.loadingBar.stop();
     }
     if (event instanceof NavigationError) {
-      this._loadingBar.stop();
+      this.loadingBar.stop();
     }
   }
 }

@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemService } from './item.service';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
+import {ShoppingCartModule, BaseCartItem} from 'ng-shopping-cart';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +20,23 @@ import { MenuItemsComponent } from './menu-items/menu-items.component';
     DbAddComponent,
     DbGetComponent,
     DbUpdateComponent,
-    MenuItemsComponent
+    MenuItemsComponent,
+    CheckoutPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SlimLoadingBarModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ShoppingCartModule.forRoot({
+      itemType: BaseCartItem,
+      serviceType: 'localStorage',
+      serviceOptions: {
+        storageKey: 'NgShoppingCart',
+        clearOnError: true
+      }
+    }),
   ],
   providers: [ItemService],
   bootstrap: [AppComponent]

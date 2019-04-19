@@ -1,0 +1,26 @@
+.itemNameDiv, .itemPriceDiv {
+  text-align: center;
+}
+
+.itemImageDiv {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.itemQuantityDiv {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.menuTable, th, td, tr {
+  border: 1px solid #ddd;
+  padding: 15px;
+}
+
+p {
+  text-align: center;
+}
