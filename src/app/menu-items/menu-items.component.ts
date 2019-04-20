@@ -24,7 +24,6 @@ export class MenuItemsComponent implements OnInit {
 
   ngOnInit() {
     this.getItems();
-
   }
 
   getItems(): void {

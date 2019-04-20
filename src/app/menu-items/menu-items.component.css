@@ -38,3 +38,7 @@ p {
 .priceTag {
   font-weight: bold;
 }
+
+hr {
+  width: 90%;
+}

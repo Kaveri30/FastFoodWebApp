@@ -43,4 +43,6 @@ import { HomePageComponent } from './home-page/home-page.component';
   providers: [ItemService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

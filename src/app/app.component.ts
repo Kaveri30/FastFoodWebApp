@@ -20,7 +20,8 @@ export class AppComponent {
     this.router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });
-
+    // We want to set the cart to use GBP instead of USD.
+    this.cartService.setLocaleFormat('GBP');
   }
 
   private navigationInterceptor(event: Event): void {
