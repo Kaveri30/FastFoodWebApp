@@ -13,6 +13,7 @@ import { ItemService } from './item.service';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
 import {ShoppingCartModule, BaseCartItem} from 'ng-shopping-cart';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
     DbGetComponent,
     DbUpdateComponent,
     MenuItemsComponent,
-    CheckoutPageComponent
+    CheckoutPageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

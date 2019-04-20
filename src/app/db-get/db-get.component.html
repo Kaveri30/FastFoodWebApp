@@ -3,6 +3,7 @@
   <thead>
   <tr>
       <td>Item name</td>
+      <td>Item type</td>
       <td>Item image URL</td>
       <td>Item price</td>
       <td colspan="2">Actions</td>
@@ -12,6 +13,7 @@
   <tbody>
       <tr *ngFor="let item of items">
           <td>{{ item.itemName }}</td>
+          <td>{{ item.itemType }}</td>
           <td>{{ item.itemPictureLocation }}</td>
           <td>{{ item.itemPrice }}</td>
           <td><a [routerLink]="['update/', item._id]" class="btn btn-primary">Edit</a></td>

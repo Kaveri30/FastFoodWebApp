@@ -5,6 +5,8 @@ import { DbGetComponent } from './db-get/db-get.component';
 import { DbUpdateComponent } from './db-update/db-update.component';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { AppComponent } from './app.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,10 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutPageComponent
+  },
+  {
+    path: 'home',
+    component: HomePageComponent
   }
 ];
 

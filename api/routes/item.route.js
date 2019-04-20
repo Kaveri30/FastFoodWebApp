@@ -46,6 +46,7 @@ itemRoutes.route('/update/:id').post(function (req, res) {
       return next(new Error('Could not load Document'));
     else {
       item.itemName = req.body.itemName;
+      item.itemType = req.body.itemType;
       item.itemPictureLocation = req.body.itemPictureLocation;
       item.itemPrice = req.body.itemPrice;
 

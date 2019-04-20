@@ -10,25 +10,44 @@ import { BaseCartItem, CartService } from 'ng-shopping-cart';
 })
 export class MenuItemsComponent implements OnInit {
 
-  items: Item[];
+  // An initial array to store all the items before sorting.
+  items: Item[] = new Array();
+  // New arrays to store the sorted data
+  mainItems: Item[] = new Array();
+  sideItems: Item[] = new Array();
+  drinkItems: Item[] = new Array();
+  dessertItems: Item[] = new Array();
 
   constructor(private is: ItemService, private cartService: CartService<BaseCartItem>) {
 
   }
 
-
   ngOnInit() {
     this.getItems();
 
-    // Used to determine the maximum quantity the user wants.
-    const maxQuantity = 10;
-    // Fill an array with 0's, meerly used to control the amount of options made.
-    const quantityArray = Array(5).fill(0).map((x,i)=>i);
   }
 
   getItems(): void {
     this.is.getItems().subscribe((data: Item[]) => {
     this.items = data;
+
+    // Loop through the items
+    for (const item of this.items) {
+      // If the item is of type food
+      if (item.itemType === 'main') {
+        // Add to mainItems array.
+        this.mainItems.push(item);
+      } else if (item.itemType === 'side') {
+        // Add to sideItems array.
+        this.sideItems.push(item);
+      } else if (item.itemType === 'drink') {
+        // Add to drinkItems array.
+        this.drinkItems.push(item);
+      } else if (item.itemType === 'dessert') {
+        // Add to dessertItems array.
+        this.dessertItems.push(item);
+      }
+    }
     });
   }
 

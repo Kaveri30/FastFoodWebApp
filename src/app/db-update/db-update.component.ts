@@ -23,14 +23,15 @@ export class DbUpdateComponent implements OnInit {
   createForm() {
     this.angForm = this.fb.group({
       itemName: ['', Validators.required],
+      itemType: ['', Validators.required],
       itemPictureLocation: ['', Validators.required],
       itemPrice: ['', Validators.required]
     });
   }
 
-  updateItem(itemName, itemPictureLocation, itemPrice) {
+  updateItem(itemName, itemType, itemPictureLocation, itemPrice) {
     this.route.params.subscribe(params => {
-      this.is.updateItem(itemName, itemPictureLocation, itemPrice, params['id']).subscribe((data: string) =>{
+      this.is.updateItem(itemName, itemType, itemPictureLocation, itemPrice, params['id']).subscribe((data: string) =>{
         console.log(data);
         this.router.navigate(['database']);
         });

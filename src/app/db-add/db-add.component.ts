@@ -20,14 +20,15 @@ export class DbAddComponent implements OnInit {
   createForm() {
     this.angForm = this.fb.group({
       itemName: ['', Validators.required ],
+      itemType: ['', Validators.required ],
       itemPictureLocation: ['', Validators.required ],
       itemPrice: ['', Validators.required ]
     });
   }
 
-  addItem(itemName, itemPictureLocation, itemPrice) {
+  addItem(itemName, itemType, itemPictureLocation, itemPrice) {
       this.route.params.subscribe(params => {
-        this.is.addItem(itemName, itemPictureLocation, itemPrice).subscribe((data:string) =>{
+        this.is.addItem(itemName, itemType, itemPictureLocation, itemPrice).subscribe((data:string) =>{
           this.router.navigate(['database']);
         });
       })

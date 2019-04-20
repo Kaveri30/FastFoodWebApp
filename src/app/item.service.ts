@@ -22,9 +22,10 @@ export class ItemService {
     return this.http.get(`${this.uri}/delete/${id}`);
   }
 
-  addItem(itemName, itemPictureLocation, itemPrice) {
+  addItem(itemName, itemType, itemPictureLocation, itemPrice) {
     const obj = {
       itemName: itemName,
+      itemType: itemType,
       itemPictureLocation: itemPictureLocation,
       itemPrice: itemPrice
     };
@@ -32,10 +33,11 @@ export class ItemService {
     return this.http.post(`${this.uri}/add`, obj);
     }
 
-  updateItem(itemName, itemPictureLocation, itemPrice, id) {
+  updateItem(itemName, itemType, itemPictureLocation, itemPrice, id) {
 
     const obj = {
       itemName: itemName,
+      itemType: itemType,
       itemPictureLocation: itemPictureLocation,
       itemPrice: itemPrice
     };

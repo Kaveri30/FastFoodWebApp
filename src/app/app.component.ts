@@ -23,8 +23,6 @@ export class AppComponent {
 
   }
 
-
-
   private navigationInterceptor(event: Event): void {
     if (event instanceof NavigationStart) {
       this.loadingBar.start();
