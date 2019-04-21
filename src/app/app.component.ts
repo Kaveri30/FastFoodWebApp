@@ -18,6 +18,7 @@ import { NavigationCancel,
 export class AppComponent {
 
   title = 'FastFoodApp';
+
   constructor(private loadingBar: SlimLoadingBarService, private router: Router, private cartService: CartService<BaseCartItem>,
               private location: Location) {
     this.router.events.subscribe((event: Event) => {
@@ -37,7 +38,6 @@ export class AppComponent {
       this.router.navigate(['home']);
     }
   }
-
   private navigationInterceptor(event: Event): void {
     if (event instanceof NavigationStart) {
       this.loadingBar.start();
