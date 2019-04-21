@@ -16,10 +16,14 @@
       <tr *ngFor="let item of items">
           <td>{{ item.itemName }}</td>
           <td>{{ item.itemType }}</td>
-          <td><a href="{{ item.itemPictureLocation }}" target="_blank">{{ item.itemPictureLocation }}</a></td>
+          <td (mouseenter) ="mouseEnter(item.itemPictureLocation, $event)"  (mouseleave) ="mouseLeave()"><a href="{{ item.itemPictureLocation }}" target="_blank">{{ item.itemPictureLocation }}</a></td>
           <td>{{ item.itemPrice }}</td>
           <td><a [routerLink]="['update/', item._id]" class="btn btn-primary">Edit</a></td>
           <td><a (click) = "deleteItem(item._id)" class="btn btn-danger">Delete</a></td>
       </tr>
   </tbody>
 </table>
+
+<div [style.background-image]="popupImage" [style.top]="mouseY" [style.left]="mouseX" id="popupDiv">
+
+</div>
