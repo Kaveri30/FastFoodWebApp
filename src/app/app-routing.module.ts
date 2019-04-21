@@ -5,8 +5,9 @@ import { DbGetComponent } from './db-get/db-get.component';
 import { DbUpdateComponent } from './db-update/db-update.component';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
-import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AdminCpComponent } from './admin-cp/admin-cp.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,14 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomePageComponent
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent
+  },
+  {
+    path: 'adminCP',
+    component: AdminCpComponent
   }
 ];
 

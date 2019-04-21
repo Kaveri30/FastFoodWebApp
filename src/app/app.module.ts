@@ -14,6 +14,8 @@ import { MenuItemsComponent } from './menu-items/menu-items.component';
 import {ShoppingCartModule, BaseCartItem} from 'ng-shopping-cart';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AdminCpComponent } from './admin-cp/admin-cp.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { HomePageComponent } from './home-page/home-page.component';
     DbUpdateComponent,
     MenuItemsComponent,
     CheckoutPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    LoginPageComponent,
+    AdminCpComponent
   ],
   imports: [
     BrowserModule,

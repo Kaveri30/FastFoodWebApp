@@ -22,6 +22,14 @@ export class AppComponent {
     });
     // We want to set the cart to use GBP instead of USD.
     this.cartService.setLocaleFormat('GBP');
+
+    // If the item doesn't exist, then set it.
+    if (!localStorage.getItem('adminLoggedIn')) {
+      window.localStorage.setItem('adminLoggedIn', 'false');
+    }
+    // Redirect to home page.
+    // As this is a template to display components, we don't want this directly accessed.
+    this.router.navigate(['home']);
   }
 
   private navigationInterceptor(event: Event): void {
