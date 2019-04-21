@@ -16,7 +16,7 @@
       <tr *ngFor="let item of items">
           <td>{{ item.itemName }}</td>
           <td>{{ item.itemType }}</td>
-          <td>{{ item.itemPictureLocation }}</td>
+          <td><a href="{{ item.itemPictureLocation }}" target="_blank">{{ item.itemPictureLocation }}</a></td>
           <td>{{ item.itemPrice }}</td>
           <td><a [routerLink]="['update/', item._id]" class="btn btn-primary">Edit</a></td>
           <td><a (click) = "deleteItem(item._id)" class="btn btn-danger">Delete</a></td>
