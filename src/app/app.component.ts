@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 import { BaseCartItem, CartService } from 'ng-shopping-cart';
+import { Location } from '@angular/common';
 import { NavigationCancel,
         Event,
         NavigationEnd,
@@ -16,7 +17,8 @@ import { NavigationCancel,
 export class AppComponent {
 
   title = 'FastFoodApp';
-  constructor(private loadingBar: SlimLoadingBarService, private router: Router, private cartService: CartService<BaseCartItem>) {
+  constructor(private loadingBar: SlimLoadingBarService, private router: Router, private cartService: CartService<BaseCartItem>,
+              private location: Location) {
     this.router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });
@@ -29,7 +31,10 @@ export class AppComponent {
     }
     // Redirect to home page.
     // As this is a template to display components, we don't want this directly accessed.
-    this.router.navigate(['home']);
+    // Only redirect if the window location is at the root of the website
+    if (location.path() === '') {
+      this.router.navigate(['home']);
+    }
   }
 
   private navigationInterceptor(event: Event): void {

@@ -19,10 +19,8 @@ export class DbGetComponent implements OnInit {
     // First check if the admin is logged in.
     if (this.adminLoggedIn === 'false') {
       this.router.navigate(['home']);
-      console.log('NOT ADMIN');
-    } else {
-      console.log('IS ADMIN');
     }
+
     this.getItems();
     }
 
@@ -39,7 +37,7 @@ export class DbGetComponent implements OnInit {
   }
 
   deleteItem(id) {
-    // We only want admins to make changes.
+    // We only want admins to make changes to the database
     if (this.adminLoggedIn === 'true') {
     this.is.deleteItem(id).subscribe(res => {
       console.log('Deleted item: ' + id);
