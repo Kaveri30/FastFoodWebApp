@@ -39,6 +39,7 @@ doLogin(loginName, loginPassword) {
     // Check the input accountLogin against all known accountLogins.
     if (loginName === account.accountLogin) {
       // If we find a match, check password.
+      // We have to put the password through a SHA-1 hash as that's how the passwords are stored.
       if (sha1(loginPassword) === account.accountPassword) {
         // We set the logged in users name and whether they have admin rights.
         window.localStorage.setItem('loggedUser', account.accountLogin);

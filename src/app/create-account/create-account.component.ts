@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
+import { Location } from '@angular/common';
 import Account from '../Account';
 import * as sha1 from 'js-sha1';
 
@@ -18,7 +19,7 @@ export class CreateAccountComponent implements OnInit {
   foundMatch: boolean;
 
   constructor(private fb: FormBuilder, private as: AccountService, private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router, private location: Location) {
       this.createForm();
   }
 
@@ -52,9 +53,14 @@ export class CreateAccountComponent implements OnInit {
       // Else, we add the account to the database.
       this.route.params.subscribe(params => {
         // Pass all of the data through the AccountService, encrypt the password using SHA-1.
-        this.as.addAccount(accountLogin, sha1(accountPassword), accountEmail, false).subscribe((data:string) =>{
+        this.as.addAccount(accountLogin, sha1(accountPassword), accountEmail, false).subscribe((data: string) => {
+          // Log the user in to the account they're just created.
+          // We set the logged in users name and whether they have admin rights.
+          window.localStorage.setItem('loggedUser', accountLogin);
+          window.localStorage.setItem('adminLoggedIn', '' + false);
           // Redirect home after account creation.
-          this.router.navigate(['home']);
+          this.location.go('home');
+          location.reload();
         });
       });
     }

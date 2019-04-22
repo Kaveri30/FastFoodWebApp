@@ -30,9 +30,6 @@ export class AppComponent {
     // Set a global localStorage object for the title, so other pages can access it.
     window.localStorage.setItem('title', this.title);
 
-    // Debugging accounts.
-    console.log(window.localStorage.getItem('loggedUser'));
-
     // We want to set the cart to use GBP instead of USD.
     this.cartService.setLocaleFormat('GBP');
 
