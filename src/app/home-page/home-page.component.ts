@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  user = window.localStorage.getItem('loggedUser');
+  loggedUser = window.localStorage.getItem('loggedUser');
+  adminLoggedIn = window.localStorage.getItem('adminLoggedIn');
+  title = window.localStorage.getItem('title');
 
   constructor() {
 

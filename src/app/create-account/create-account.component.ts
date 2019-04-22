@@ -73,4 +73,8 @@ export class CreateAccountComponent implements OnInit {
     this.getAccounts();
   }
 
+  goToLogin() {
+    this.router.navigate(['login']);
+  }
+
 }

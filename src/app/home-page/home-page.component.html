@@ -1,3 +1,5 @@
 <hr>
-<h1>Welcome {{ user }}!</h1>
+<h1 *ngIf="loggedUser === ''">Welcome to {{ title }}!</h1>
+<h1 *ngIf="loggedUser !== '' && adminLoggedIn ==='false'">Welcome back, {{ loggedUser }}!</h1>
+<h1 *ngIf="loggedUser !== '' && adminLoggedIn === 'true'">Welcome back Administrator, {{ loggedUser }}!</h1>
 <hr>

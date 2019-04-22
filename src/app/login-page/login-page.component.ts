@@ -52,6 +52,9 @@ doLogin(loginName, loginPassword) {
   }
 
   if (this.haveLoggedIn) {
+    console.log(this.haveLoggedIn);
+    // Need to set to false for next time we want to log in.
+    this.haveLoggedIn = false;
     // Send the user home, and reload the page.
     this.location.go('home');
     location.reload();

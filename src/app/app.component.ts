@@ -27,6 +27,9 @@ export class AppComponent {
       this.navigationInterceptor(event);
     });
 
+    // Set a global localStorage object for the title, so other pages can access it.
+    window.localStorage.setItem('title', this.title);
+
     // Debugging accounts.
     console.log(window.localStorage.getItem('loggedUser'));
 
