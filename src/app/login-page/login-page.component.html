@@ -5,7 +5,7 @@
   <div class="card-body">
     <form [formGroup]="loginForm" novalidate>
       <div class="form-group">
-        <label class="col-md-4">Username</label>
+        <label class="col-md-6">Username</label>
         <input type="text" class="form-control" formControlName="loginName" #loginName />
       </div>
       <div *ngIf="loginForm.controls['loginName'].invalid && (loginForm.controls['loginName'].dirty || loginForm.controls['loginName'].touched)" class="alert alert-danger">

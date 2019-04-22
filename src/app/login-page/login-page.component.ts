@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../account.service';
+import { Location } from '@angular/common';
 import Account from '../Account';
 import * as sha1 from 'js-sha1';
 
@@ -17,7 +18,7 @@ export class LoginPageComponent implements OnInit {
   haveLoggedIn: boolean;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
-              private as: AccountService) {
+              private as: AccountService, private location: Location) {
     this.createForm();
   }
 
@@ -51,7 +52,9 @@ doLogin(loginName, loginPassword) {
   }
 
   if (this.haveLoggedIn) {
-    this.router.navigate(['home']);
+    // Send the user home, and reload the page.
+    this.location.go('home');
+    location.reload();
   } else {
     window.alert('Incorrect login details, create an account or try again.');
   }

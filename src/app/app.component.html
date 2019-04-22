@@ -14,17 +14,41 @@
             </a>
           </li>
     </ul>
-    <ul class="navbar-nav">
+    <ul class="navbar-nav" *ngIf="loggedUser !== ''  && adminLoggedIn === 'true'">
         <li class="nav-item">
             <a routerLink="checkout" class="nav-link" routerLinkActive="active">
-                <cart-summary><span class="glyphicon glyphicon-shopping-cart"></span></cart-summary>
+              <cart-summary><span class="glyphicon glyphicon-shopping-cart"></span></cart-summary>
             </a>
           </li>
-            <li class="nav-item">
-              <a routerLink="login" class="nav-link" routerLinkActive="active">
-                Login
-              </a>
-            </li>
+          <li class="nav-item">
+            <a routerLink="adminCP" class="nav-link" routerLinkActive="active">
+              AdminCP
+            </a>
+          </li>
+      </ul>
+      <ul class="navbar-nav" *ngIf="loggedUser !== ''  && adminLoggedIn === 'false'">
+        <li class="nav-item">
+            <a routerLink="checkout" class="nav-link" routerLinkActive="active">
+              <cart-summary><span class="glyphicon glyphicon-shopping-cart"></span></cart-summary>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" (click)="doLogout()" class="nav-link">
+              Logout
+            </a>
+          </li>
+      </ul>
+      <ul class="navbar-nav" *ngIf="loggedUser === ''">
+        <li class="nav-item">
+            <a routerLink="checkout" class="nav-link" routerLinkActive="active">
+              <cart-summary><span class="glyphicon glyphicon-shopping-cart"></span></cart-summary>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="login" class="nav-link" routerLinkActive="active">
+              Login
+            </a>
+          </li>
       </ul>
   </div>
 </nav>

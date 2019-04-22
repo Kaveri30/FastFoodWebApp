@@ -18,6 +18,8 @@ import { NavigationCancel,
 export class AppComponent {
 
   title = 'FastFoodApp';
+  loggedUser = window.localStorage.getItem('loggedUser');
+  adminLoggedIn = window.localStorage.getItem('adminLoggedIn');
 
   constructor(private loadingBar: SlimLoadingBarService, private router: Router, private cartService: CartService<BaseCartItem>,
               private location: Location) {
@@ -42,6 +44,7 @@ export class AppComponent {
       this.router.navigate(['home']);
     }
   }
+
   private navigationInterceptor(event: Event): void {
     if (event instanceof NavigationStart) {
       this.loadingBar.start();
@@ -55,5 +58,14 @@ export class AppComponent {
     if (event instanceof NavigationError) {
       this.loadingBar.stop();
     }
+  }
+
+  doLogout() {
+    // Reset variables to no login.
+    window.localStorage.setItem('adminLoggedIn', 'false');
+    window.localStorage.setItem('loggedUser', '');
+    // Send the user home, and reload the page.
+    this.location.go('home');
+    location.reload();
   }
 }

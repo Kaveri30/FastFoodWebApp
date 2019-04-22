@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-cp',
@@ -10,14 +11,14 @@ export class AdminCpComponent implements OnInit {
 
   adminLoggedIn = window.localStorage.getItem('adminLoggedIn');
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private location: Location) {
 
   }
 
   ngOnInit() {
-
     // Need to check if admin, we don't want non-admins here.
-    if (this.adminLoggedIn != 'true') {
+    if (this.adminLoggedIn !== 'true') {
+      window.alert('You are not an admin!');
       this.router.navigate(['home']);
     }
 
@@ -32,8 +33,9 @@ export class AdminCpComponent implements OnInit {
     } else if (action === 'logout') {
       window.localStorage.setItem('adminLoggedIn', 'false');
       window.localStorage.setItem('loggedUser', '');
-      window.alert('You have successfully logged out!');
-      this.router.navigate(['home']);
+      // Send the user home, and reload the page.
+      this.location.go('home');
+      location.reload();
     }
 
   }
