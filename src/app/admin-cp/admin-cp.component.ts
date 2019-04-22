@@ -31,6 +31,7 @@ export class AdminCpComponent implements OnInit {
       this.router.navigate(['database']);
     } else if (action === 'logout') {
       window.localStorage.setItem('adminLoggedIn', 'false');
+      window.localStorage.setItem('loggedUser', '');
       window.alert('You have successfully logged out!');
       this.router.navigate(['home']);
     }

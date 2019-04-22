@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AccountService } from '../account.service';
+import Account from '../Account';
+import * as sha1 from 'js-sha1';
 
 @Component({
   selector: 'app-login-page',
@@ -10,9 +13,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginPageComponent implements OnInit {
 
   loginForm: FormGroup;
-  adminLoggedIn = window.localStorage.getItem('adminLoggedIn');
+  accounts: Account[];
+  haveLoggedIn: boolean;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router,
+              private as: AccountService) {
     this.createForm();
   }
 
@@ -25,30 +30,44 @@ createForm() {
 
 // This is the login logic for the admin control panel.
 doLogin(loginName, loginPassword) {
-  // If the login is admin or Admin
-  if (loginName === 'admin' || loginName === 'Admin') {
-    // Then, if the password is password
-    if (loginPassword === 'password') {
-      // We set our adminLoggedIn local variable to true.
-      window.localStorage.setItem('adminLoggedIn', 'true');
-      // And direct the admin to the database controls.
-      this.router.navigate(['adminCP']);
+  // We assume no login to begin with.
+  this.haveLoggedIn = false;
+
+  // Loop through all accounts
+  for (const account of this.accounts) {
+    // Check the input accountLogin against all known accountLogins.
+    if (loginName === account.accountLogin) {
+      // If we find a match, check password.
+      if (sha1(loginPassword) === account.accountPassword) {
+        // We set the logged in users name and whether they have admin rights.
+        window.localStorage.setItem('loggedUser', account.accountLogin);
+        window.localStorage.setItem('adminLoggedIn', '' + account.isAdmin);
+        // Then we set whether we have logged in or not.
+        this.haveLoggedIn = true;
+      } else {
+        this.haveLoggedIn = false;
+      }
     }
-  } else {
-    // If the details are incorrect, we set the admin log in to false.
-    window.localStorage.setItem('adminLoggedIn', 'false');
-    // Then we notify the user that the login details are incorrect.
-    window.alert('Incorrect login details');
   }
 
+  if (this.haveLoggedIn) {
+    this.router.navigate(['home']);
+  } else {
+    window.alert('Incorrect login details, create an account or try again.');
+  }
+}
+
+// Get accounts from database, needed to check for existing accounts.
+getAccounts() {
+  // Get the accounts, using the AccountService.
+  this.as.getAccounts().subscribe((data: Account[]) => {
+      this.accounts = data;
+  });
 }
 
 ngOnInit() {
-  // Check if we're logged in or not
-  if (this.adminLoggedIn === 'true') {
-    // If we are, redirect to the admin control panel.
-    this.router.navigate(['adminCP']);
-  }
+  // Get accounts on initialisation.
+  this.getAccounts();
 }
 
 }

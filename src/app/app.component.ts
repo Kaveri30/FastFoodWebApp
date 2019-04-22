@@ -24,6 +24,10 @@ export class AppComponent {
     this.router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });
+
+    // Debugging accounts.
+    console.log(window.localStorage.getItem('loggedUser'));
+
     // We want to set the cart to use GBP instead of USD.
     this.cartService.setLocaleFormat('GBP');
 

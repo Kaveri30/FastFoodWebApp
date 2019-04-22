@@ -16,6 +16,7 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AdminCpComponent } from './admin-cp/admin-cp.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AdminCpComponent } from './admin-cp/admin-cp.component';
     CheckoutPageComponent,
     HomePageComponent,
     LoginPageComponent,
-    AdminCpComponent
+    AdminCpComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,

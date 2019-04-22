@@ -14,7 +14,7 @@ export class DbAddComponent implements OnInit {
   adminLoggedIn = window.localStorage.getItem('adminLoggedIn');
 
   constructor(private fb: FormBuilder, private is: ItemService, private route: ActivatedRoute,
-    private router: Router) {
+              private router: Router) {
     this.createForm();
   }
 

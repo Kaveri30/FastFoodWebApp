@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Define collection and schema for Item
-let Business = new Schema({
+let Item = new Schema({
   itemName: {
     type: String
   },
@@ -19,4 +19,4 @@ let Business = new Schema({
     collection: 'Items'
 });
 
-module.exports = mongoose.model('Item', Business);
+module.exports = mongoose.model('Item', Item);
