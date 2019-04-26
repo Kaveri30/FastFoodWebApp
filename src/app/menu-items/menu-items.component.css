@@ -20,12 +20,12 @@
   margin-left:auto;
   margin-right:auto;
   border-collapse: separate;
-  border-spacing: 4px;
+  border-spacing: 8px;
 }
 
-td, tr {
+/* td, tr {
   border: 1px solid #444444;
-}
+} */
 
 p {
   text-align: center;
@@ -37,6 +37,12 @@ p {
 
 .priceTag {
   font-weight: bold;
+}
+
+.form-control {
+  width: 22%;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 /* Looks better without, have a look at. */

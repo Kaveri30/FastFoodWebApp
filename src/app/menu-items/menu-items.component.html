@@ -20,7 +20,7 @@
           <td>{{ item.itemName }}</td>
           <td>{{ item.itemPictureLocation }}</td>
           <td>{{ item.itemPrice }}</td>
-          <td><a (click) = "addToCart(item)" class="btn btn-primary">Add to cart</a></td>
+          <td><button (click) = "addToCart(item)" class="btn btn-primary">Add to cart</button></td>
       </tr>
   </tbody>
 </table>
@@ -32,57 +32,63 @@
     <td>
       <div class="table column">
         <div class="itemNameDiv">
+          <hr>
           <h5>{{ item.itemName }}</h5>
+          <hr>
         </div>
         <img class ="itemImageDiv" src="{{ item.itemPictureLocation }}">
         <div class="divBr"></div>
         <div class="itemQuantityDiv">
           <label for="{{item._id}}">Quantity:&nbsp;</label>
-            <select id="{{item._id}}">
+            <select class="form-control" id="{{item._id}}">
                 <option *ngFor="let dummy of ' '.repeat(20).split(''), let x = index" value="{{x + 1}}">{{x + 1}}</option>
               </select>
         </div>
         <div class="itemPriceDiv">
           <p class="priceTag">&pound;{{ item.itemPrice }} </p>
-          <a (click) = "addToCart(item)" class="btn btn-primary">Add to cart</a>
+          <button (click) = "addToCart(item)" class="btn btn-primary">Add to cart</button>
         </div>
-      </div>
+        </div>
     </td>
     <td *ngIf="x < mainItems.length - 1 ? mainItems[x + 1].itemName : ''">
         <div class="table column">
             <div class="itemNameDiv">
+              <hr>
               <h5>{{ mainItems[x + 1].itemName }}</h5>
+              <hr>
             </div>
             <img class ="itemImageDiv" src="{{ mainItems[x + 1].itemPictureLocation }}">
             <div class="divBr"></div>
             <div class="itemQuantityDiv">
                 <label for="{{mainItems[x + 1]._id}}">Quantity:&nbsp;</label>
-                <select id="{{mainItems[x + 1]._id}}">
+                <select class="form-control" id="{{mainItems[x + 1]._id}}">
                     <option *ngFor="let dummy of ' '.repeat(20).split(''), let x = index" value="{{x + 1}}">{{x + 1}}</option>
                   </select>
             </div>
             <div class="itemPriceDiv">
               <p class="priceTag">&pound;{{ mainItems[x + 1].itemPrice }} </p>
-              <a (click) = "addToCart(mainItems[x + 1])" class="btn btn-primary">Add to cart</a>
+              <button (click) = "addToCart(mainItems[x + 1])" class="btn btn-primary">Add to cart</button>
             </div>
           </div>
     </td>
     <td *ngIf="x < mainItems.length - 2 ? mainItems[x + 2].itemName : ''">
         <div class="table column">
             <div class="itemNameDiv">
+              <hr>
               <h5>{{ mainItems[x + 2].itemName }}</h5>
+              <hr>
             </div>
             <img class ="itemImageDiv" src="{{ mainItems[x + 2].itemPictureLocation }}">
             <div class="divBr"></div>
             <div class="itemQuantityDiv">
                 <label for="{{mainItems[x + 2]._id}}">Quantity:&nbsp;</label>
-                <select id="{{mainItems[x + 2]._id}}">
+                <select class="form-control" id="{{mainItems[x + 2]._id}}">
                     <option *ngFor="let dummy of ' '.repeat(20).split(''), let x = index" value="{{x + 1}}">{{x + 1}}</option>
                   </select>
             </div>
             <div class="itemPriceDiv">
               <p class="priceTag">&pound;{{ mainItems[x + 2].itemPrice }} </p>
-              <a (click) = "addToCart(mainItems[x + 2])" class="btn btn-primary">Add to cart</a>
+              <button (click) = "addToCart(mainItems[x + 2])" class="btn btn-primary">Add to cart</button>
             </div>
           </div>
     </td>
@@ -100,57 +106,63 @@
       <td>
         <div class="table column">
           <div class="itemNameDiv">
+            <hr>
             <h5>{{ item.itemName }}</h5>
+            <hr>
           </div>
           <img class ="itemImageDiv" src="{{ item.itemPictureLocation }}">
           <div class="divBr"></div>
           <div class="itemQuantityDiv">
             <label for="{{item._id}}">Quantity:&nbsp;</label>
-              <select id="{{item._id}}">
+              <select class="form-control" id="{{item._id}}">
                   <option *ngFor="let dummy of ' '.repeat(20).split(''), let x = index" value="{{x + 1}}">{{x + 1}}</option>
                 </select>
           </div>
           <div class="itemPriceDiv">
             <p class="priceTag">&pound;{{ item.itemPrice }} </p>
-            <a (click) = "addToCart(item)" class="btn btn-primary">Add to cart</a>
+            <button (click) = "addToCart(item)" class="btn btn-primary">Add to cart</button>
           </div>
         </div>
       </td>
       <td *ngIf="x < sideItems.length - 1 ? sideItems[x + 1].itemName : ''">
           <div class="table column">
               <div class="itemNameDiv">
+                <hr>
                 <h5>{{ sideItems[x + 1].itemName }}</h5>
+                <hr>
               </div>
               <img class ="itemImageDiv" src="{{ sideItems[x + 1].itemPictureLocation }}">
               <div class="divBr"></div>
               <div class="itemQuantityDiv">
                   <label for="{{sideItems[x + 1]._id}}">Quantity:&nbsp;</label>
-                  <select id="{{sideItems[x + 1]._id}}">
+                  <select class="form-control" id="{{sideItems[x + 1]._id}}">
                       <option *ngFor="let dummy of ' '.repeat(20).split(''), let x = index" value="{{x + 1}}">{{x + 1}}</option>
                     </select>
               </div>
               <div class="itemPriceDiv">
                 <p class="priceTag">&pound;{{ sideItems[x + 1].itemPrice }} </p>
-                <a (click) = "addToCart(sideItems[x + 1])" class="btn btn-primary">Add to cart</a>
+                <button (click) = "addToCart(sideItems[x + 1])" class="btn btn-primary">Add to cart</button>
               </div>
             </div>
       </td>
       <td *ngIf="x < sideItems.length - 2 ? sideItems[x + 2].itemName : ''">
           <div class="table column">
               <div class="itemNameDiv">
+                <hr>
                 <h5>{{ sideItems[x + 2].itemName }}</h5>
+                <hr>
               </div>
               <img class ="itemImageDiv" src="{{ sideItems[x + 2].itemPictureLocation }}">
               <div class="divBr"></div>
               <div class="itemQuantityDiv">
                   <label for="{{sideItems[x + 2]._id}}">Quantity:&nbsp;</label>
-                  <select id="{{sideItems[x + 2]._id}}">
+                  <select class="form-control" id="{{sideItems[x + 2]._id}}">
                       <option *ngFor="let dummy of ' '.repeat(20).split(''), let x = index" value="{{x + 1}}">{{x + 1}}</option>
                     </select>
               </div>
               <div class="itemPriceDiv">
                 <p class="priceTag">&pound;{{ sideItems[x + 2].itemPrice }} </p>
-                <a (click) = "addToCart(sideItems[x + 2])" class="btn btn-primary">Add to cart</a>
+                <button (click) = "addToCart(sideItems[x + 2])" class="btn btn-primary">Add to cart</button>
               </div>
             </div>
       </td>
@@ -168,57 +180,63 @@
       <td>
         <div class="table column">
           <div class="itemNameDiv">
+            <hr>
             <h5>{{ item.itemName }}</h5>
+            <hr>
           </div>
           <img class ="itemImageDiv" src="{{ item.itemPictureLocation }}">
           <div class="divBr"></div>
           <div class="itemQuantityDiv">
             <label for="{{item._id}}">Quantity:&nbsp;</label>
-              <select id="{{item._id}}">
+              <select class="form-control" id="{{item._id}}">
                   <option *ngFor="let dummy of ' '.repeat(20).split(''), let x = index" value="{{x + 1}}">{{x + 1}}</option>
                 </select>
           </div>
           <div class="itemPriceDiv">
             <p class="priceTag">&pound;{{ item.itemPrice }} </p>
-            <a (click) = "addToCart(item)" class="btn btn-primary">Add to cart</a>
+            <button (click) = "addToCart(item)" class="btn btn-primary">Add to cart</button>
           </div>
         </div>
       </td>
       <td *ngIf="x < drinkItems.length - 1 ? drinkItems[x + 1].itemName : ''">
           <div class="table column">
               <div class="itemNameDiv">
+                <hr>
                 <h5>{{ drinkItems[x + 1].itemName }}</h5>
+                <hr>
               </div>
               <img class ="itemImageDiv" src="{{ drinkItems[x + 1].itemPictureLocation }}">
               <div class="divBr"></div>
               <div class="itemQuantityDiv">
                   <label for="{{drinkItems[x + 1]._id}}">Quantity:&nbsp;</label>
-                  <select id="{{drinkItems[x + 1]._id}}">
+                  <select class="form-control" id="{{drinkItems[x + 1]._id}}">
                       <option *ngFor="let dummy of ' '.repeat(20).split(''), let x = index" value="{{x + 1}}">{{x + 1}}</option>
                     </select>
               </div>
               <div class="itemPriceDiv">
                 <p class="priceTag">&pound;{{ drinkItems[x + 1].itemPrice }} </p>
-                <a (click) = "addToCart(drinkItems[x + 1])" class="btn btn-primary">Add to cart</a>
+                <button (click) = "addToCart(drinkItems[x + 1])" class="btn btn-primary">Add to cart</button>
               </div>
             </div>
       </td>
       <td *ngIf="x < drinkItems.length - 2 ? drinkItems[x + 2].itemName : ''">
           <div class="table column">
               <div class="itemNameDiv">
+                <hr>
                 <h5>{{ drinkItems[x + 2].itemName }}</h5>
+                <hr>
               </div>
               <img class ="itemImageDiv" src="{{ drinkItems[x + 2].itemPictureLocation }}">
               <div class="divBr"></div>
               <div class="itemQuantityDiv">
                   <label for="{{drinkItems[x + 2]._id}}">Quantity:&nbsp;</label>
-                  <select id="{{drinkItems[x + 2]._id}}">
+                  <select class="form-control" id="{{drinkItems[x + 2]._id}}">
                       <option *ngFor="let dummy of ' '.repeat(20).split(''), let x = index" value="{{x + 1}}">{{x + 1}}</option>
                     </select>
               </div>
               <div class="itemPriceDiv">
                 <p class="priceTag">&pound;{{ drinkItems[x + 2].itemPrice }} </p>
-                <a (click) = "addToCart(drinkItems[x + 2])" class="btn btn-primary">Add to cart</a>
+                <button (click) = "addToCart(drinkItems[x + 2])" class="btn btn-primary">Add to cart</button>
               </div>
             </div>
       </td>
@@ -236,57 +254,63 @@
       <td>
         <div class="table column">
           <div class="itemNameDiv">
+            <hr>
             <h5>{{ item.itemName }}</h5>
+            <hr>
           </div>
           <img class ="itemImageDiv" src="{{ item.itemPictureLocation }}">
           <div class="divBr"></div>
           <div class="itemQuantityDiv">
             <label for="{{item._id}}">Quantity:&nbsp;</label>
-              <select id="{{item._id}}">
+              <select class="form-control" id="{{item._id}}">
                   <option *ngFor="let dummy of ' '.repeat(20).split(''), let x = index" value="{{x + 1}}">{{x + 1}}</option>
                 </select>
           </div>
           <div class="itemPriceDiv">
             <p class="priceTag">&pound;{{ item.itemPrice }} </p>
-            <a (click) = "addToCart(item)" class="btn btn-primary">Add to cart</a>
+            <button (click) = "addToCart(item)" class="btn btn-primary">Add to cart</button>
           </div>
         </div>
       </td>
       <td *ngIf="x < dessertItems.length - 1 ? dessertItems[x + 1].itemName : ''">
           <div class="table column">
               <div class="itemNameDiv">
+                <hr>
                 <h5>{{ dessertItems[x + 1].itemName }}</h5>
+                <hr>
               </div>
               <img class ="itemImageDiv" src="{{ dessertItems[x + 1].itemPictureLocation }}">
               <div class="divBr"></div>
               <div class="itemQuantityDiv">
                   <label for="{{dessertItems[x + 1]._id}}">Quantity:&nbsp;</label>
-                  <select id="{{dessertItems[x + 1]._id}}">
+                  <select class="form-control" id="{{dessertItems[x + 1]._id}}">
                       <option *ngFor="let dummy of ' '.repeat(20).split(''), let x = index" value="{{x + 1}}">{{x + 1}}</option>
                     </select>
               </div>
               <div class="itemPriceDiv">
                 <p class="priceTag">&pound;{{ dessertItems[x + 1].itemPrice }} </p>
-                <a (click) = "addToCart(dessertItems[x + 1])" class="btn btn-primary">Add to cart</a>
+                <button (click) = "addToCart(dessertItems[x + 1])" class="btn btn-primary">Add to cart</button>
               </div>
             </div>
       </td>
       <td *ngIf="x < dessertItems.length - 2 ? dessertItems[x + 2].itemName : ''">
           <div class="table column">
               <div class="itemNameDiv">
+                <hr>
                 <h5>{{ dessertItems[x + 2].itemName }}</h5>
+                <hr>
               </div>
               <img class ="itemImageDiv" src="{{ dessertItems[x + 2].itemPictureLocation }}">
               <div class="divBr"></div>
               <div class="itemQuantityDiv">
                   <label for="{{dessertItems[x + 2]._id}}">Quantity:&nbsp;</label>
-                  <select id="{{dessertItems[x + 2]._id}}">
+                  <select class="form-control" id="{{dessertItems[x + 2]._id}}">
                       <option *ngFor="let dummy of ' '.repeat(20).split(''), let x = index" value="{{x + 1}}">{{x + 1}}</option>
                     </select>
               </div>
               <div class="itemPriceDiv">
                 <p class="priceTag">&pound;{{ dessertItems[x + 2].itemPrice }} </p>
-                <a (click) = "addToCart(dessertItems[x + 2])" class="btn btn-primary">Add to cart</a>
+                <button (click) = "addToCart(dessertItems[x + 2])" class="btn btn-primary">Add to cart</button>
               </div>
             </div>
       </td>

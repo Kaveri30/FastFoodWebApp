@@ -1,51 +1,52 @@
 <ng2-slim-loading-bar color="blue"></ng2-slim-loading-bar>
 
 <nav class="navbar navbar-expand-sm bg-primary sticky">
+    <a class="navbar-brand text-white">{{ title }}</a>
   <div class="container-fluid">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a routerLink="home" class="nav-link" routerLinkActive="active">
+            <a routerLink="home" class="nav-link text-white" routerLinkActive="active">
               Home
             </a>
           </li>
         <li class="nav-item">
-            <a routerLink="menu" class="nav-link" routerLinkActive="active">
+            <a routerLink="menu" class="nav-link text-white" routerLinkActive="active">
               Food menu
             </a>
           </li>
     </ul>
     <ul class="navbar-nav" *ngIf="loggedUser !== ''  && adminLoggedIn === 'true'">
         <li class="nav-item">
-            <a routerLink="checkout" class="nav-link" routerLinkActive="active">
+            <a routerLink="checkout" class="nav-link text-white" routerLinkActive="active">
               <cart-summary><span class="glyphicon glyphicon-shopping-cart"></span></cart-summary>
             </a>
           </li>
           <li class="nav-item">
-            <a routerLink="adminCP" class="nav-link" routerLinkActive="active">
+            <a routerLink="adminCP" class="nav-link text-white" routerLinkActive="active">
               AdminCP
             </a>
           </li>
       </ul>
       <ul class="navbar-nav" *ngIf="loggedUser !== ''  && adminLoggedIn === 'false'">
         <li class="nav-item">
-            <a routerLink="checkout" class="nav-link" routerLinkActive="active">
-              <cart-summary><span class="glyphicon glyphicon-shopping-cart"></span></cart-summary>
+            <a routerLink="checkout" class="nav-link text-white" routerLinkActive="active">
+              <cart-summary><span class="glyphicon glyphicon-shopping-cart text-white"></span></cart-summary>
             </a>
           </li>
           <li class="nav-item">
-            <a href="" (click)="doLogout()" class="nav-link">
+            <a href="" (click)="doLogout()" class="nav-link text-white">
               Logout
             </a>
           </li>
       </ul>
       <ul class="navbar-nav" *ngIf="loggedUser === ''">
         <li class="nav-item">
-            <a routerLink="checkout" class="nav-link" routerLinkActive="active">
+            <a routerLink="checkout" class="nav-link text-white" routerLinkActive="active">
               <cart-summary><span class="glyphicon glyphicon-shopping-cart"></span></cart-summary>
             </a>
           </li>
           <li class="nav-item">
-            <a routerLink="accountcreate" class="nav-link" routerLinkActive="active">
+            <a routerLink="accountcreate" class="nav-link text-white" routerLinkActive="active">
               Create account / Login
             </a>
           </li>

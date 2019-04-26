@@ -4,3 +4,27 @@
 <h1 *ngIf="loggedUser !== '' && adminLoggedIn ==='false'">Welcome back, {{ loggedUser }}!</h1>
 <h1 *ngIf="loggedUser !== '' && adminLoggedIn === 'true'">Welcome back Administrator, {{ loggedUser }}!</h1>
 <hr>
+
+<ngb-carousel *ngIf="images" class="carousel slide carousel-fade" data-ride="carousel">
+  <ng-template ngbSlide>
+    <img [src]="images[0]" class="img-fluid">
+    <div class="carousel-caption">
+      <h2 class="text-white">Here at {{ title }}, we value quality.</h2>
+      <p>Our food is made from the highest quality ingredients.</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <img [src]="images[1]" class="img-fluid">
+    <div class="carousel-caption">
+        <h2 class="text-white">Fast delivery times.</h2>
+      <p>Delivery within an hour, or your money back.</p>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <img [src]="images[2]" class="img-fluid">
+    <div class="carousel-caption">
+      <h2 class="text-white">What are you waiting for?</h2>
+      <p>We're ready for your order.</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
