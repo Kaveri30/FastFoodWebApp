@@ -18,6 +18,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AdminCpComponent } from './admin-cp/admin-cp.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { FooterComponent } from './footer/footer.component';
+import { AngularFontAwesomeModule} from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     HomePageComponent,
     LoginPageComponent,
     AdminCpComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
       }
     }),
     NgbModule,
+    AngularFontAwesomeModule,
   ],
   providers: [ItemService],
   bootstrap: [AppComponent]

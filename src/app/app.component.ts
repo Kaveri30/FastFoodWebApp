@@ -17,7 +17,7 @@ import { NavigationCancel,
 
 export class AppComponent {
 
-  title = 'FastFoodApp';
+  title = 'FastFoodWebApp';
   loggedUser = window.localStorage.getItem('loggedUser');
   adminLoggedIn = window.localStorage.getItem('adminLoggedIn');
 

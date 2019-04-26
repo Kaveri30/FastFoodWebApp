@@ -1,5 +1,4 @@
-<ng2-slim-loading-bar color="blue"></ng2-slim-loading-bar>
-
+<ng2-slim-loading-bar color="white" [height]="'8px'"></ng2-slim-loading-bar>
 <nav class="navbar navbar-expand-sm bg-primary sticky">
     <a class="navbar-brand text-white">{{ title }}</a>
   <div class="container-fluid">
@@ -54,6 +53,9 @@
   </div>
 </nav>
 
-<div class="container">
+<div id="main" class="container">
   <router-outlet></router-outlet>
 </div>
+<br>
+
+<app-footer class="footer"></app-footer>

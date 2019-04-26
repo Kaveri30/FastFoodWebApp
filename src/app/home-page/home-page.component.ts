@@ -16,7 +16,7 @@ export class HomePageComponent implements OnInit {
   images: string[] = new Array();
 
   constructor(config: NgbCarouselConfig) {
-    config.interval = 4000; // ms
+    config.interval = 7000; // in ms
     config.keyboard = false;
   }
 
