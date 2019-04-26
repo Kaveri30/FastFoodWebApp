@@ -17,6 +17,7 @@ export class CreateAccountComponent implements OnInit {
   angForm: FormGroup;
   accounts: Account[];
   foundMatch: boolean;
+  tempNameHold: string;
 
   constructor(private fb: FormBuilder, private as: AccountService, private route: ActivatedRoute,
               private router: Router, private location: Location) {
@@ -36,10 +37,13 @@ export class CreateAccountComponent implements OnInit {
     // Assuming no match to begin with
     this.foundMatch = false;
 
+    // We also want to put the username to lower case and check anything in the
+    // database as lower case, effectively ignoring whether captials are in the name or not.
+
     // Loop through all accounts
     for (const account of this.accounts) {
       // Check the input accountLogin against all known accountLogins.
-      if (accountLogin === account.accountLogin) {
+      if (accountLogin.toLowerCase() === account.accountLogin.toLowerCase()) {
         // If we find a match, set to true and break out of the loop.
         this.foundMatch = true;
         break;

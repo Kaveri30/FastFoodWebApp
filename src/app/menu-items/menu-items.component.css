@@ -2,12 +2,12 @@
   text-align: center;
 }
 
-.itemImageDiv {
+/* .itemImageDiv {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-}
+} */
 
 .itemQuantityDiv {
   display: block;
@@ -20,11 +20,11 @@
   margin-left:auto;
   margin-right:auto;
   border-collapse: separate;
-  border-spacing: 12px;
+  border-spacing: 4px;
 }
 
 td, tr {
-  border: 1px solid #ddd;
+  border: 1px solid #444444;
 }
 
 p {
@@ -32,13 +32,11 @@ p {
 }
 
 .divBr {
-  padding: 6px;
+  padding: 3px;
 }
 
 .priceTag {
   font-weight: bold;
 }
 
-hr {
-  width: 90%;
-}
+/* Looks better without, have a look at. */
