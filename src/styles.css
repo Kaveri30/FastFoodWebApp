@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/ng2-slim-loading-bar/style.css';
-@import '../node_modules/ng-shopping-cart/styles/css/ng-shopping-cart.css';
 @import './custombootstrap/bootstrap.min.css';
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+@import '../node_modules/ng-shopping-cart/styles/css/ng-shopping-cart.css';
 
 hr {
   background-color: #5a5a5a;

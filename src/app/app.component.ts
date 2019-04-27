@@ -8,6 +8,7 @@ import { NavigationCancel,
         NavigationError,
         NavigationStart,
         Router } from '@angular/router';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,13 @@ export class AppComponent {
 
   constructor(private loadingBar: SlimLoadingBarService, private router: Router, private cartService: CartService<BaseCartItem>,
               private location: Location) {
+
     this.router.events.subscribe((event: Event) => {
+      // if (event instanceof NavigationEnd) {
+      //   // On the end of a navigation, call the code that sorts the footer
+      //   // positioning.
+      //   moveFooter();
+      // }
       this.navigationInterceptor(event);
     });
 
@@ -43,6 +50,25 @@ export class AppComponent {
     if (location.path() === '') {
       this.router.navigate(['home']);
     }
+
+    // // Moves the footer to the bottom of the page.
+    // function moveFooter() {
+    //   // If the height of the container exceeds the page, then remove the id
+    //   // so it just gets placed at the end. We also don't want want it to happen
+    //   // on the database page.
+    //   if ($('#container').height() >= 600 || router.url === '/database') {
+    //     $('#footer').removeAttr('id');
+    //   } else {
+    //     // Else re-attach the id
+    //     $('.needthis').prop('id', 'footer');
+    //   }
+    //   // We then push the footer to the bottom of the page
+    //   // If the id wasn't removed.
+    //   const footerHeight = $('#footer').outerHeight();
+    //   $('#wrapper').css({
+    //       'padding-bottom' : footerHeight + 'px'
+    //   });
+    // }
   }
 
   private navigationInterceptor(event: Event): void {
@@ -68,4 +94,5 @@ export class AppComponent {
     this.location.go('home');
     location.reload();
   }
+
 }

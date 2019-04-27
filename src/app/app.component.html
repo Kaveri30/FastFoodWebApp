@@ -1,5 +1,5 @@
 <ng2-slim-loading-bar color="white" [height]="'8px'"></ng2-slim-loading-bar>
-<nav class="navbar navbar-expand-sm bg-primary sticky">
+<nav class="navbar navbar-expand-sm bg-primary sticky highIndex">
     <a class="navbar-brand text-white">{{ title }}</a>
   <div class="container-fluid">
     <ul class="navbar-nav mr-auto">
@@ -17,7 +17,7 @@
     <ul class="navbar-nav" *ngIf="loggedUser !== ''  && adminLoggedIn === 'true'">
         <li class="nav-item">
             <a routerLink="checkout" class="nav-link text-white" routerLinkActive="active">
-              <cart-summary><span class="glyphicon glyphicon-shopping-cart"></span></cart-summary>
+              <cart-summary></cart-summary>
             </a>
           </li>
           <li class="nav-item">
@@ -29,7 +29,7 @@
       <ul class="navbar-nav" *ngIf="loggedUser !== ''  && adminLoggedIn === 'false'">
         <li class="nav-item">
             <a routerLink="checkout" class="nav-link text-white" routerLinkActive="active">
-              <cart-summary><span class="glyphicon glyphicon-shopping-cart text-white"></span></cart-summary>
+              <cart-summary></cart-summary>
             </a>
           </li>
           <li class="nav-item">
@@ -41,7 +41,7 @@
       <ul class="navbar-nav" *ngIf="loggedUser === ''">
         <li class="nav-item">
             <a routerLink="checkout" class="nav-link text-white" routerLinkActive="active">
-              <cart-summary><span class="glyphicon glyphicon-shopping-cart"></span></cart-summary>
+              <cart-summary></cart-summary>
             </a>
           </li>
           <li class="nav-item">
@@ -53,9 +53,13 @@
   </div>
 </nav>
 
-<div id="main" class="container">
+<div class="container lowIndex">
   <router-outlet></router-outlet>
 </div>
-<br>
 
-<app-footer class="footer"></app-footer>
+<br>
+<div id="footer" class="needthis">
+  <app-footer></app-footer>
+</div>
+
+

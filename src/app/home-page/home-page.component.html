@@ -5,23 +5,23 @@
 <h1 *ngIf="loggedUser !== '' && adminLoggedIn === 'true'">Welcome back Administrator, {{ loggedUser }}!</h1>
 <hr>
 
-<ngb-carousel *ngIf="images" class="carousel slide carousel-fade" data-ride="carousel">
+<ngb-carousel *ngIf="images" data-ride="carousel">
   <ng-template ngbSlide>
-    <img [src]="images[0]" class="img-fluid">
+    <img [src]="images[0]" class="imageControl img-fluid">
     <div class="carousel-caption">
       <h2 class="text-white">Here at {{ title }}, we value quality.</h2>
       <p>Our food is made from the highest quality ingredients.</p>
     </div>
   </ng-template>
   <ng-template ngbSlide>
-    <img [src]="images[1]" class="img-fluid">
+    <img [src]="images[1]" class="imageControl img-fluid">
     <div class="carousel-caption">
         <h2 class="text-white">Fast delivery times.</h2>
       <p>Delivery within an hour, or your money back.</p>
     </div>
   </ng-template>
   <ng-template ngbSlide>
-    <img [src]="images[2]" class="img-fluid">
+    <img [src]="images[2]" class="imageControl img-fluid">
     <div class="carousel-caption">
       <h2 class="text-white">What are you waiting for?</h2>
       <p>We're ready for your order.</p>
@@ -29,3 +29,9 @@
   </ng-template>
 </ngb-carousel>
 <br>
+<h3 class="text-center">
+  Sourcing ingredients from local farms and markets we strive to give you
+  the most authentic local food experience possible. In the end, life and
+  business are about human connections, that's why at {{ title }}, we offer
+  top quality customer service.
+</h3>

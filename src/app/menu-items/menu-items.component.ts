@@ -53,8 +53,8 @@ export class MenuItemsComponent implements OnInit {
   addToCart(item) {
     // Create a base cart item
     const cartItem = new BaseCartItem();
-    // Use of + at the start to convert to an integer and must cast type to HTMLInputElement
-    const quantity = +(<HTMLInputElement>document.getElementById(item._id)).value;
+    // Use of + at the start to convert to a number and must cast type to HTMLInputElement
+    const quantity = +(document.getElementById(item._id) as HTMLInputElement).value;
     // Fill this object our with our items.
     cartItem.setId(item._id);
     cartItem.setName(item.itemName);
