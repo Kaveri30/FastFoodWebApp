@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../account.service';
 import { Location } from '@angular/common';
 import Account from '../Account';
-import * as sha1 from 'js-sha1';
+import { sha3_256 } from 'js-sha3';
 
 @Component({
   selector: 'app-login-page',
@@ -40,7 +40,7 @@ doLogin(loginName, loginPassword) {
     if (loginName === account.accountLogin) {
       // If we find a match, check password.
       // We have to put the password through a SHA-1 hash as that's how the passwords are stored.
-      if (sha1(loginPassword) === account.accountPassword) {
+      if (sha3_256(loginPassword) === account.accountPassword) {
         // We set the logged in users name and whether they have admin rights.
         window.localStorage.setItem('loggedUser', account.accountLogin);
         window.localStorage.setItem('adminLoggedIn', '' + account.isAdmin);

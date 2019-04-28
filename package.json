@@ -26,6 +26,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.0",
     "js-sha1": "^0.6.0",
+    "js-sha3": "^0.8.0",
     "ng-shopping-cart": "^1.0.0",
     "ng2-slim-loading-bar": "^4.0.0",
     "ngx-loading-bar": "0.0.9",

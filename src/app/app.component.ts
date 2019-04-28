@@ -37,6 +37,11 @@ export class AppComponent {
     // Set a global localStorage object for the title, so other pages can access it.
     window.localStorage.setItem('title', this.title);
 
+    // Set the global database item type, starting with items if it's empty
+    if (window.localStorage.getItem('databaseDisplayData') === '') {
+      window.localStorage.setItem('databaseDisplayData', 'items');
+    }
+
     // We want to set the cart to use GBP instead of USD.
     this.cartService.setLocaleFormat('GBP');
 

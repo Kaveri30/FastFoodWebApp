@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import Item from '../Item';
+import Account from '../Account';
 import { ItemService } from '../item.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-db-get',
@@ -12,29 +14,43 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 export class DbGetComponent implements OnInit {
 
   items: Item[];
+  accounts: Account[];
   adminLoggedIn: string = window.localStorage.getItem('adminLoggedIn');
+  databaseDisplayData: string;
   popupDiv: HTMLDivElement;
   popupImage: SafeStyle;
   mouseX: string;
   mouseY: string;
 
-  constructor(private is: ItemService, private route: ActivatedRoute, private router: Router
-              ,private sanitizer: DomSanitizer) { }
+  constructor(private is: ItemService, private route: ActivatedRoute, private router: Router,
+              private sanitizer: DomSanitizer, private as: AccountService) {
+
+  }
 
   ngOnInit() {
     // First check if the admin is logged in.
     if (this.adminLoggedIn === 'false') {
       this.router.navigate(['home']);
+    } else {
+      this.getObjects();
+      // Call the change data on init as we can be redirected back here from
+      // the update page, requiring us to set our data + button states again.
+      this.changeData(this.databaseDisplayData);
     }
+  }
 
-    this.getItems();
-    }
-
-  getItems(): void {
+  getObjects(): void {
     // We only want admins to make changes.
     if (this.adminLoggedIn === 'true') {
+      // Get our object type first.
+      this.databaseDisplayData = window.localStorage.getItem('databaseDisplayData');
+      // Get the items.
       this.is.getItems().subscribe((data: Item[]) => {
         this.items = data;
+      });
+      // Get the accounts.
+      this.as.getAccounts().subscribe((data: Account[]) => {
+        this.accounts = data;
         });
     } else {
       window.alert('You are not an admin!');
@@ -42,16 +58,49 @@ export class DbGetComponent implements OnInit {
     }
   }
 
-  deleteItem(id) {
+  deleteObject(id) {
     // We only want admins to make changes to the database
     if (this.adminLoggedIn === 'true') {
-    this.is.deleteItem(id).subscribe(res => {
-      console.log('Deleted item: ' + id);
-      this.getItems();
-      });
+      // We need to check what type the item is first.
+      if (this.databaseDisplayData === 'items') {
+        this.is.deleteItem(id).subscribe(res => {
+          console.log('Deleted item: ' + id);
+          this.getObjects();
+          });
+      } else if (this.databaseDisplayData === 'accounts') {
+        this.as.deleteAccount(id).subscribe(res => {
+          console.log('Deleted account: ' + id);
+          this.getObjects();
+          });
+      }
     } else {
       window.alert('You are not an admin!');
       this.router.navigate(['home']);
+    }
+  }
+
+  changeData(dataType: string) {
+    // First we need to get the button.
+    const itemLabel: HTMLLabelElement = document.getElementById('itemLabel') as HTMLLabelElement;
+    const accountLabel: HTMLLabelElement = document.getElementById('accountLabel') as HTMLLabelElement;
+
+    // Then we want to determine which button was pressed.
+    if (dataType === 'items') {
+      // First we need to change which button is active.
+      itemLabel.classList.add('active');
+      accountLabel.classList.remove('active');
+      // We set the databaseDisplayData
+      window.localStorage.setItem('databaseDisplayData', 'items');
+      // Then we want to repopulate the table with the new data.
+      this.getObjects();
+    } else if (dataType === 'accounts') {
+      // First we need to change which button is active.
+      itemLabel.classList.remove('active');
+      accountLabel.classList.add('active');
+      // We set the databaseDisplayData
+      window.localStorage.setItem('databaseDisplayData', 'accounts');
+      // Then we want to repopulate the table with the new data.
+      this.getObjects();
     }
   }
 

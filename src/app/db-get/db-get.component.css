@@ -4,7 +4,7 @@ h1 {
 
 #popupDiv{
   position:absolute;
-  display:block;
+  display:none;
   height: 140px;
   width: 190px;
   background-repeat: no-repeat;

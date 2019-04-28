@@ -4,7 +4,7 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
 import { Location } from '@angular/common';
 import Account from '../Account';
-import * as sha1 from 'js-sha1';
+import { sha3_256 } from 'js-sha3';
 
 @Component({
   selector: 'app-create-account',
@@ -57,7 +57,7 @@ export class CreateAccountComponent implements OnInit {
       // Else, we add the account to the database.
       this.route.params.subscribe(params => {
         // Pass all of the data through the AccountService, encrypt the password using SHA-1.
-        this.as.addAccount(accountLogin, sha1(accountPassword), accountEmail, false).subscribe((data: string) => {
+        this.as.addAccount(accountLogin, sha3_256(accountPassword), accountEmail, false).subscribe((data: string) => {
           // Log the user in to the account they're just created.
           // We set the logged in users name and whether they have admin rights.
           window.localStorage.setItem('loggedUser', accountLogin);
