@@ -3,6 +3,7 @@ import Item from '../Item';
 import CartItem from '../CartItem';
 import { ItemService } from '../item.service';
 import { BaseCartItem, CartService } from 'ng-shopping-cart';
+import { delay } from 'q';
 
 @Component({
   selector: 'app-menu-items',
@@ -75,7 +76,6 @@ export class MenuItemsComponent implements OnInit {
       if (currItem.item._id === inputItem._id) {
         currItem.quantity += cartItem.quantity;
         foundItem = true;
-        console.log('Updated quant');
       }
     }
 
@@ -88,6 +88,21 @@ export class MenuItemsComponent implements OnInit {
     // Set the global variable.
     window.localStorage.setItem('cartContents', JSON.stringify(this.cart));
 
-    console.log(this.cart);
+    this.addedToCart(inputItem._id);
+  }
+
+  addedToCart(id) {
+    // Get the button and alert that's relevent to the item.
+    const alert = document.getElementById(id + 'alert') as HTMLDivElement;
+    const button = document.getElementById(id + 'button') as HTMLButtonElement;
+    // Show the alert + hide the button
+    alert.style.display = 'block';
+    button.style.display = 'none';
+
+    // Then, 1750ms later, hide the alert + show the button.
+    setTimeout(() => {
+      alert.style.display = 'none';
+      button.style.display = '';
+    }, 1750);
   }
 }

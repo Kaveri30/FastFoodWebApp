@@ -46,8 +46,11 @@
         </div>
         <div class="itemPriceDiv">
           <p class="priceTag">&pound;{{ item.itemPrice }} </p>
-          <button (click) = "addToCart(item)" class="btn btn-primary">Add to cart</button>
+          <button (click) = "addToCart(item)" class="btn btn-primary" id="{{ item._id}}button">Add to cart</button>
         </div>
+        <div class="alert alert-success" id="{{ item._id}}alert" style="display:none;">
+            Added to cart!
+          </div>
         </div>
     </td>
     <td *ngIf="x < mainItems.length - 1 ? mainItems[x + 1].itemName : ''">
@@ -67,7 +70,10 @@
             </div>
             <div class="itemPriceDiv">
               <p class="priceTag">&pound;{{ mainItems[x + 1].itemPrice }} </p>
-              <button (click) = "addToCart(mainItems[x + 1])" class="btn btn-primary">Add to cart</button>
+              <button (click) = "addToCart(mainItems[x + 1])" class="btn btn-primary" id="{{mainItems[x + 1]._id}}button">Add to cart</button>
+            </div>
+            <div class="alert alert-success" id="{{ mainItems[x + 1]._id}}alert" style="display:none;">
+                Added to cart!
             </div>
           </div>
     </td>
@@ -88,7 +94,10 @@
             </div>
             <div class="itemPriceDiv">
               <p class="priceTag">&pound;{{ mainItems[x + 2].itemPrice }} </p>
-              <button (click) = "addToCart(mainItems[x + 2])" class="btn btn-primary">Add to cart</button>
+              <button (click) = "addToCart(mainItems[x + 2])" class="btn btn-primary" id="{{mainItems[x + 2]._id}}button">Add to cart</button>
+            </div>
+            <div class="alert alert-success" id="{{ mainItems[x + 2]._id}}alert" style="display:none;">
+                Added to cart!
             </div>
           </div>
     </td>
@@ -120,7 +129,10 @@
           </div>
           <div class="itemPriceDiv">
             <p class="priceTag">&pound;{{ item.itemPrice }} </p>
-            <button (click) = "addToCart(item)" class="btn btn-primary">Add to cart</button>
+            <button (click) = "addToCart(item)" class="btn btn-primary" id="{{item._id}}button">Add to cart</button>
+          </div>
+          <div class="alert alert-success" id="{{ item._id}}alert" style="display:none;">
+              Added to cart!
           </div>
         </div>
       </td>
@@ -141,7 +153,10 @@
               </div>
               <div class="itemPriceDiv">
                 <p class="priceTag">&pound;{{ sideItems[x + 1].itemPrice }} </p>
-                <button (click) = "addToCart(sideItems[x + 1])" class="btn btn-primary">Add to cart</button>
+                <button (click) = "addToCart(sideItems[x + 1])" class="btn btn-primary" id="{{sideItems[x + 1]._id}}button">Add to cart</button>
+              </div>
+              <div class="alert alert-success" id="{{ sideItems[x + 1]._id}}alert" style="display:none;">
+                  Added to cart!
               </div>
             </div>
       </td>
@@ -162,7 +177,10 @@
               </div>
               <div class="itemPriceDiv">
                 <p class="priceTag">&pound;{{ sideItems[x + 2].itemPrice }} </p>
-                <button (click) = "addToCart(sideItems[x + 2])" class="btn btn-primary">Add to cart</button>
+                <button (click) = "addToCart(sideItems[x + 2])" class="btn btn-primary" id="{{sideItems[x + 2]._id}}button">Add to cart</button>
+              </div>
+              <div class="alert alert-success" id="{{ sideItems[x + 2]._id}}alert" style="display:none;">
+                  Added to cart!
               </div>
             </div>
       </td>
@@ -194,7 +212,10 @@
           </div>
           <div class="itemPriceDiv">
             <p class="priceTag">&pound;{{ item.itemPrice }} </p>
-            <button (click) = "addToCart(item)" class="btn btn-primary">Add to cart</button>
+            <button (click) = "addToCart(item)" class="btn btn-primary" id="{{item._id}}button">Add to cart</button>
+          </div>
+          <div class="alert alert-success" id="{{ item._id}}alert" style="display:none;">
+              Added to cart!
           </div>
         </div>
       </td>
@@ -215,7 +236,10 @@
               </div>
               <div class="itemPriceDiv">
                 <p class="priceTag">&pound;{{ drinkItems[x + 1].itemPrice }} </p>
-                <button (click) = "addToCart(drinkItems[x + 1])" class="btn btn-primary">Add to cart</button>
+                <button (click) = "addToCart(drinkItems[x + 1])" class="btn btn-primary" id="{{drinkItems[x + 1]._id}}button">Add to cart</button>
+              </div>
+              <div class="alert alert-success" id="{{ drinkItems[x + 1]._id}}alert" style="display:none;">
+                  Added to cart!
               </div>
             </div>
       </td>
@@ -236,7 +260,10 @@
               </div>
               <div class="itemPriceDiv">
                 <p class="priceTag">&pound;{{ drinkItems[x + 2].itemPrice }} </p>
-                <button (click) = "addToCart(drinkItems[x + 2])" class="btn btn-primary">Add to cart</button>
+                <button (click) = "addToCart(drinkItems[x + 2])" class="btn btn-primary" id="{{drinkItems[x + 2]._id}}button">Add to cart</button>
+              </div>
+              <div class="alert alert-success" id="{{ drinkItems[x + 2]._id}}alert" style="display:none;">
+                  Added to cart!
               </div>
             </div>
       </td>
@@ -268,7 +295,10 @@
           </div>
           <div class="itemPriceDiv">
             <p class="priceTag">&pound;{{ item.itemPrice }} </p>
-            <button (click) = "addToCart(item)" class="btn btn-primary">Add to cart</button>
+            <button (click) = "addToCart(item)" class="btn btn-primary" id="{{item._id}}button">Add to cart</button>
+          </div>
+          <div class="alert alert-success" id="{{ item._id}}alert" style="display:none;">
+              Added to cart!
           </div>
         </div>
       </td>
@@ -289,7 +319,10 @@
               </div>
               <div class="itemPriceDiv">
                 <p class="priceTag">&pound;{{ dessertItems[x + 1].itemPrice }} </p>
-                <button (click) = "addToCart(dessertItems[x + 1])" class="btn btn-primary">Add to cart</button>
+                <button (click) = "addToCart(dessertItems[x + 1])" class="btn btn-primary" id="{{dessertItems[x + 1]._id}}button">Add to cart</button>
+              </div>
+              <div class="alert alert-success" id="{{ dessertItems[x + 1]._id}}alert" style="display:none;">
+                  Added to cart!
               </div>
             </div>
       </td>
@@ -310,7 +343,10 @@
               </div>
               <div class="itemPriceDiv">
                 <p class="priceTag">&pound;{{ dessertItems[x + 2].itemPrice }} </p>
-                <button (click) = "addToCart(dessertItems[x + 2])" class="btn btn-primary">Add to cart</button>
+                <button (click) = "addToCart(dessertItems[x + 2])" class="btn btn-primary" id="{{dessertItems[x + 2]._id}}button">Add to cart</button>
+              </div>
+              <div class="alert alert-success" id="{{ dessertItems[x + 2]._id}}alert" style="display:none;">
+                  Added to cart!
               </div>
             </div>
       </td>

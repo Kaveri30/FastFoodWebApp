@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import CartItem from '../CartItem';
+import * as $ from 'jquery';
 import Item from '../Item';
 
 @Component({
@@ -40,7 +41,9 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   emptyCart() {
+    // Create a new, empty cart.
     const emptyCart: CartItem[] = new Array();
+    // Update the cart with this new empty cart.
     this.updateCart(emptyCart);
   }
 
