@@ -1,0 +1,13 @@
+.cartPrice {
+  font-size: 14px;
+  float: top;
+}
+
+.cartText {
+  font-size:12px;
+  float: bottom;
+}
+
+.cartIcon {
+  float: left;
+}

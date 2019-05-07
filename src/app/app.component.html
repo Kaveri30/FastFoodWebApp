@@ -17,7 +17,7 @@
     <ul class="navbar-nav" *ngIf="loggedUser !== ''  && adminLoggedIn === 'true'">
         <li class="nav-item">
             <a routerLink="checkout" class="nav-link text-white" routerLinkActive="active">
-              <cart-summary></cart-summary>
+              <app-cartshowcase></app-cartshowcase>
             </a>
           </li>
           <li class="nav-item">
@@ -29,7 +29,7 @@
       <ul class="navbar-nav" *ngIf="loggedUser !== ''  && adminLoggedIn === 'false'">
         <li class="nav-item">
             <a routerLink="checkout" class="nav-link text-white" routerLinkActive="active">
-              <cart-summary></cart-summary>
+              <app-cartshowcase></app-cartshowcase>
             </a>
           </li>
           <li class="nav-item">
@@ -41,7 +41,7 @@
       <ul class="navbar-nav" *ngIf="loggedUser === ''">
         <li class="nav-item">
             <a routerLink="checkout" class="nav-link text-white" routerLinkActive="active">
-              <cart-summary></cart-summary>
+              <app-cartshowcase></app-cartshowcase>
             </a>
           </li>
           <li class="nav-item">

@@ -20,6 +20,7 @@ import { AdminCpComponent } from './admin-cp/admin-cp.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { FooterComponent } from './footer/footer.component';
 import { AngularFontAwesomeModule} from 'angular-font-awesome';
+import { CartshowcaseComponent } from './cartshowcase/cartshowcase.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AngularFontAwesomeModule} from 'angular-font-awesome';
     LoginPageComponent,
     AdminCpComponent,
     CreateAccountComponent,
-    FooterComponent
+    FooterComponent,
+    CartshowcaseComponent
   ],
   imports: [
     BrowserModule,

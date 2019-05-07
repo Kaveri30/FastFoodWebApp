@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
 import { BaseCartItem, CartService } from 'ng-shopping-cart';
+import CartItem from './CartItem';
 import { Location } from '@angular/common';
 import { NavigationCancel,
         Event,
@@ -8,7 +9,6 @@ import { NavigationCancel,
         NavigationError,
         NavigationStart,
         Router } from '@angular/router';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-root',
@@ -18,21 +18,26 @@ import * as $ from 'jquery';
 
 export class AppComponent {
 
+  cart: CartItem[] = new Array();
   title = 'FastFoodWebApp';
   loggedUser = window.localStorage.getItem('loggedUser');
   adminLoggedIn = window.localStorage.getItem('adminLoggedIn');
+  cartContents = JSON.parse(window.localStorage.getItem('cartContents'));
 
   constructor(private loadingBar: SlimLoadingBarService, private router: Router, private cartService: CartService<BaseCartItem>,
               private location: Location) {
 
     this.router.events.subscribe((event: Event) => {
-      // if (event instanceof NavigationEnd) {
-      //   // On the end of a navigation, call the code that sorts the footer
-      //   // positioning.
-      //   moveFooter();
-      // }
       this.navigationInterceptor(event);
     });
+
+    // If the cart doesn't exist, create it.
+    if (!localStorage.getItem('cartContents')) {
+      window.localStorage.setItem('cartContents', JSON.stringify(this.cart));
+      this.cartContents = JSON.parse(window.localStorage.getItem('cartContents'));
+    }
+
+    console.log(this.cartContents);
 
     // Set a global localStorage object for the title, so other pages can access it.
     window.localStorage.setItem('title', this.title);
@@ -56,24 +61,6 @@ export class AppComponent {
       this.router.navigate(['home']);
     }
 
-    // // Moves the footer to the bottom of the page.
-    // function moveFooter() {
-    //   // If the height of the container exceeds the page, then remove the id
-    //   // so it just gets placed at the end. We also don't want want it to happen
-    //   // on the database page.
-    //   if ($('#container').height() >= 600 || router.url === '/database') {
-    //     $('#footer').removeAttr('id');
-    //   } else {
-    //     // Else re-attach the id
-    //     $('.needthis').prop('id', 'footer');
-    //   }
-    //   // We then push the footer to the bottom of the page
-    //   // If the id wasn't removed.
-    //   const footerHeight = $('#footer').outerHeight();
-    //   $('#wrapper').css({
-    //       'padding-bottom' : footerHeight + 'px'
-    //   });
-    // }
   }
 
   private navigationInterceptor(event: Event): void {

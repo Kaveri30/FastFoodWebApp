@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Item from '../Item';
+import CartItem from '../CartItem';
 import { ItemService } from '../item.service';
 import { BaseCartItem, CartService } from 'ng-shopping-cart';
 
@@ -17,12 +18,17 @@ export class MenuItemsComponent implements OnInit {
   sideItems: Item[] = new Array();
   drinkItems: Item[] = new Array();
   dessertItems: Item[] = new Array();
+  // An array for cart
+  cart: CartItem[] = new Array();
 
   constructor(private is: ItemService, private cartService: CartService<BaseCartItem>) {
 
   }
 
   ngOnInit() {
+    // Get cart items
+    this.cart = JSON.parse(window.localStorage.getItem('cartContents'));
+    // Get menu items
     this.getItems();
   }
 
@@ -50,23 +56,38 @@ export class MenuItemsComponent implements OnInit {
     });
   }
 
-  addToCart(item) {
+  addToCart(inputItem) {
+    // First we get the cart contents.
+    this.cart = JSON.parse(window.localStorage.getItem('cartContents'));
     // Create a base cart item
-    const cartItem = new BaseCartItem();
+    const cartItem = new CartItem();
     // Use of + at the start to convert to a number and must cast type to HTMLInputElement
-    const quantity = +(document.getElementById(item._id) as HTMLInputElement).value;
+    const quantity = +(document.getElementById(inputItem._id) as HTMLInputElement).value;
     // Fill this object our with our items.
-    cartItem.setId(item._id);
-    cartItem.setName(item.itemName);
-    cartItem.setPrice(item.itemPrice);
-    cartItem.setQuantity(quantity);
+    cartItem.item = inputItem;
+    cartItem.quantity = quantity;
 
-    // By converting our item to a BaseCartItem, we can use all the default functionality
+    // Now a flag to see if the cart item already exists, false by default
+    let foundItem = false;
 
-    console.log(cartItem);
+    // Now we check to see if this item is already in the cart, if it is, we just increase the quantity.
+    for (const currItem of this.cart) {
+      if (currItem.item._id === inputItem._id) {
+        currItem.quantity += cartItem.quantity;
+        foundItem = true;
+        console.log('Updated quant');
+      }
+    }
 
-    this.cartService.addItem(cartItem);
+    // If the item wasn't found in the cart, then add it as a new item.
+    if (!foundItem) {
+      // Add cart item to the cart
+      this.cart.push(cartItem);
+    }
 
-    console.log(this.cartService.getItems());
+    // Set the global variable.
+    window.localStorage.setItem('cartContents', JSON.stringify(this.cart));
+
+    console.log(this.cart);
   }
 }

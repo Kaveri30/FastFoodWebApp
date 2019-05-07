@@ -2,6 +2,34 @@
 <hr>
 <h1>Your shopping cart</h1>
 <hr>
-<cart-view [display]="'responsive'"> </cart-view>
+<table *ngIf="cartContents.length !== 0" class="table table-hover table-striped">
+  <thead>
+    <td>Name</td>
+    <td>Picture</td>
+    <td>Quantity</td>
+    <td>Price</td>
+    <td>Total</td>
+  </thead>
+  <tbody>
+      <tr *ngFor="let item of cartContents">
+        <td>{{ item.item.itemName }}</td>
+        <td><img src="{{ item.item.itemPictureLocation }}"/></td>
+        <td><button class="btn btn-primary minusButton" (click)="decreaseQuantity(item)">-</button>&nbsp;{{ item.quantity }}&nbsp;<button class="btn btn-primary addButton" (click)="increaseQuantity(item)">+</button></td>
+        <td>&pound;{{ item.item.itemPrice }}</td>
+        <td>&pound;{{ (item.item.itemPrice * item.quantity).toFixed(2) }}</td>
+      </tr>
+  </tbody>
+  <tfoot>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Total cost: &pound;{{ cartDisplayTotal }}</td>
+  </tfoot>
+</table>
 <br>
-<cart-checkout [service]="'paypal'" [settings]="settings"> </cart-checkout>
+<div *ngIf="cartContents.length === 0" class="card">
+  <h3>Your cart is empty!</h3>
+</div>
+<br>
+<button (click) = "emptyCart()" class="btn btn-primary">Empty Cart</button>

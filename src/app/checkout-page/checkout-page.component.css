@@ -1,3 +1,31 @@
 h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
+
+img {
+  display: block;
+  max-width: 30%;
+  height: auto;
+}
+
+.card {
+  padding:20px;
+}
+
+.quantCol {
+  text-align: center;
+}
+
+.addButton {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.minusButton {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+}
