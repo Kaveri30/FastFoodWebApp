@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import CartItem from '../CartItem';
+import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import * as $ from 'jquery';
 import Item from '../Item';
 
@@ -11,7 +12,10 @@ import Item from '../Item';
 
 export class CheckoutPageComponent implements OnInit {
 
+  public payPalConfig ?: IPayPalConfig;
+
   cartContents: CartItem[] = new Array();
+  addScript = false;
   cartTotal = 0;
   index = 0;
   cartDisplayTotal = '';
@@ -21,11 +25,68 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Get paypal set
+    this.initConfig();
     // Get the cart on initialisation.
     this.cartContents = JSON.parse(window.localStorage.getItem('cartContents'));
 
     this.sumCart();
   }
+
+  private initConfig(): void {
+    this.payPalConfig = {
+        currency: 'GBP',
+        clientId: 'AdOav_GJtaMr-nORWGEre_A0UJENrZ37wfxo_uJbeiTa9QuIYi9Def3NXo-0mVJunRZ_pZiw2lAsq3Gp',
+        createOrderOnClient: (data) => <ICreateOrderRequest> {
+            intent: 'CAPTURE',
+            purchase_units: [{
+                amount: {
+                    currency_code: 'GBP',
+                    value: '9.99',
+                    breakdown: {
+                        item_total: {
+                            currency_code: 'GBP',
+                            value: '9.99'
+                        }
+                    }
+                },
+                items: [{
+                    name: 'Enterprise Subscription',
+                    quantity: '1',
+                    category: 'DIGITAL_GOODS',
+                    unit_amount: {
+                        currency_code: 'GBP',
+                        value: '9.99',
+                    },
+                }]
+            }]
+        },
+        style: {
+            label: 'paypal',
+            layout: 'vertical'
+        },
+        onApprove: (data, actions) => {
+            console.log('onApprove - transaction was approved, but not authorized', data, actions);
+            actions.order.get().then(details => {
+                console.log('onApprove - you can get full order details inside onApprove: ', details);
+            });
+
+        },
+        onClientAuthorization: (data) => {
+            console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        },
+        onCancel: (data, actions) => {
+            console.log('OnCancel', data, actions);
+
+        },
+        onError: err => {
+            console.log('OnError', err);
+        },
+        onClick: () => {
+            console.log('onClick');
+        },
+    };
+}
 
   sumCart() {
     // Reset cart total before use.
@@ -87,6 +148,10 @@ export class CheckoutPageComponent implements OnInit {
     }
     // Set and update cart information.
     this.updateCart(this.cartContents);
+  }
+
+  checkoutCart() {
+
   }
 
   updateCart(inputCart) {

@@ -34,4 +34,6 @@
 </div>
 
 <br>
-<button (click) = "emptyCart()" class="btn btn-primary emptyButton" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Empty Cart</button>
+<ngx-paypal [config]="payPalConfig"></ngx-paypal>
+<button (click) = "emptyCart()" class="btn btn-primary emptyButton">Empty Cart</button>
+<button (click) = "checkoutCart()" class="btn btn-primary">Checkout</button>

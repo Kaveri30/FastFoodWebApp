@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
-import { BaseCartItem, CartService } from 'ng-shopping-cart';
 import CartItem from './CartItem';
 import { Location } from '@angular/common';
 import { NavigationCancel,
@@ -24,7 +23,7 @@ export class AppComponent {
   adminLoggedIn = window.localStorage.getItem('adminLoggedIn');
   cartContents = JSON.parse(window.localStorage.getItem('cartContents'));
 
-  constructor(private loadingBar: SlimLoadingBarService, private router: Router, private cartService: CartService<BaseCartItem>,
+  constructor(private loadingBar: SlimLoadingBarService, private router: Router,
               private location: Location) {
 
     this.router.events.subscribe((event: Event) => {
@@ -46,9 +45,6 @@ export class AppComponent {
     if (window.localStorage.getItem('databaseDisplayData') === '') {
       window.localStorage.setItem('databaseDisplayData', 'items');
     }
-
-    // We want to set the cart to use GBP instead of USD.
-    this.cartService.setLocaleFormat('GBP');
 
     // If the item doesn't exist, then set it.
     if (!localStorage.getItem('adminLoggedIn')) {

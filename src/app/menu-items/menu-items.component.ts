@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import Item from '../Item';
 import CartItem from '../CartItem';
 import { ItemService } from '../item.service';
-import { BaseCartItem, CartService } from 'ng-shopping-cart';
 import * as $ from 'jquery';
 
 @Component({
@@ -22,7 +21,7 @@ export class MenuItemsComponent implements OnInit {
   // An array for cart
   cart: CartItem[] = new Array();
 
-  constructor(private is: ItemService, private cartService: CartService<BaseCartItem>) {
+  constructor(private is: ItemService) {
 
   }
 

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DbAddComponent } from './db-add/db-add.component';
@@ -12,7 +11,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemService } from './item.service';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
-import {ShoppingCartModule, BaseCartItem} from 'ng-shopping-cart';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -21,6 +19,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { FooterComponent } from './footer/footer.component';
 import { AngularFontAwesomeModule} from 'angular-font-awesome';
 import { CartshowcaseComponent } from './cartshowcase/cartshowcase.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -43,16 +42,9 @@ import { CartshowcaseComponent } from './cartshowcase/cartshowcase.component';
     SlimLoadingBarModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ShoppingCartModule.forRoot({
-      itemType: BaseCartItem,
-      serviceType: 'localStorage',
-      serviceOptions: {
-        storageKey: 'NgShoppingCart',
-        clearOnError: true
-      }
-    }),
     NgbModule,
     AngularFontAwesomeModule,
+    NgxPayPalModule,
   ],
   providers: [ItemService],
   bootstrap: [AppComponent]
