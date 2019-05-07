@@ -34,6 +34,7 @@
 </div>
 
 <br>
-<ngx-paypal [config]="payPalConfig"></ngx-paypal>
+<div class="paypalControls">
+  <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+</div>
 <button (click) = "emptyCart()" class="btn btn-primary emptyButton">Empty Cart</button>
-<button (click) = "checkoutCart()" class="btn btn-primary">Checkout</button>

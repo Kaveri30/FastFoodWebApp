@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import CartItem from '../CartItem';
-import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import { IPayPalConfig, ICreateOrderRequest, ITransactionItem, IUnitAmount } from 'ngx-paypal';
 import * as $ from 'jquery';
 import Item from '../Item';
 
@@ -15,6 +15,8 @@ export class CheckoutPageComponent implements OnInit {
   public payPalConfig ?: IPayPalConfig;
 
   cartContents: CartItem[] = new Array();
+  paypalCart: ITransactionItem[] = new Array();
+  transactionAmount: IUnitAmount;
   addScript = false;
   cartTotal = 0;
   index = 0;
@@ -25,68 +27,85 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Get paypal set
-    this.initConfig();
     // Get the cart on initialisation.
     this.cartContents = JSON.parse(window.localStorage.getItem('cartContents'));
-
+    // Sum the cart up.
     this.sumCart();
+    // Now we need to convert the cart into a paypal transaction object array.
+    this.convertToPaypalCart();
+    // Get paypal set after doing cart
+    this.initConfig();
   }
 
   private initConfig(): void {
     this.payPalConfig = {
-        currency: 'GBP',
-        clientId: 'AdOav_GJtaMr-nORWGEre_A0UJENrZ37wfxo_uJbeiTa9QuIYi9Def3NXo-0mVJunRZ_pZiw2lAsq3Gp',
-        createOrderOnClient: (data) => <ICreateOrderRequest> {
-            intent: 'CAPTURE',
-            purchase_units: [{
-                amount: {
-                    currency_code: 'GBP',
-                    value: '9.99',
-                    breakdown: {
-                        item_total: {
-                            currency_code: 'GBP',
-                            value: '9.99'
-                        }
-                    }
-                },
-                items: [{
-                    name: 'Enterprise Subscription',
-                    quantity: '1',
-                    category: 'DIGITAL_GOODS',
-                    unit_amount: {
-                        currency_code: 'GBP',
-                        value: '9.99',
-                    },
-                }]
-            }]
-        },
-        style: {
-            label: 'paypal',
-            layout: 'vertical'
-        },
-        onApprove: (data, actions) => {
-            console.log('onApprove - transaction was approved, but not authorized', data, actions);
-            actions.order.get().then(details => {
-                console.log('onApprove - you can get full order details inside onApprove: ', details);
-            });
-
-        },
-        onClientAuthorization: (data) => {
-            console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-        },
-        onCancel: (data, actions) => {
-            console.log('OnCancel', data, actions);
-
-        },
-        onError: err => {
-            console.log('OnError', err);
-        },
-        onClick: () => {
-            console.log('onClick');
-        },
+      currency: 'GBP',
+      clientId: 'AdOav_GJtaMr-nORWGEre_A0UJENrZ37wfxo_uJbeiTa9QuIYi9Def3NXo-0mVJunRZ_pZiw2lAsq3Gp',
+      createOrderOnClient: (data) => ({
+        intent: 'CAPTURE',
+        purchase_units: [{
+          amount: this.transactionAmount,
+          items: this.paypalCart
+      }]
+      }) as ICreateOrderRequest,
+      style: {
+          label: 'paypal',
+          layout: 'vertical'
+      },
+      onApprove: (data, actions) => {
+        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        actions.order.get().then(details => {
+          console.log('onApprove - you can get full order details inside onApprove: ', details);
+        });
+      },
+      onClientAuthorization: (data) => {
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel', data, actions);
+      },
+      onError: err => {
+        console.log('OnError', err);
+      },
+      onClick: () => {
+        console.log('onClick');
+      },
     };
-}
+  }
+
+  convertToPaypalCart() {
+    this.paypalCart = [];
+    // Loop through the cart and copy the information from the cart into the paypal object.
+    for (const currItem of this.cartContents) {
+      // Create our paypal item here, need to
+      const transactionItem = {
+        name: 'def',
+        quantity: 'def',
+        unit_amount: {
+            currency_code: 'GBP',
+            value: 'def',
+        }
+      };
+      transactionItem.name = currItem.item.itemName;
+      transactionItem.quantity = '' + currItem.quantity;
+      transactionItem.unit_amount.value = '' + currItem.item.itemPrice;
+      // Then add the paypal object to the paypal object array.
+      this.paypalCart.push(transactionItem);
+    }
+    console.log('Paypal cart: ');
+    console.log(this.paypalCart);
+    // Now to make the cart total.
+    this.transactionAmount = {
+      currency_code: 'GBP',
+      value: '' + this.cartTotal,
+      breakdown: {
+          item_total: {
+              currency_code: 'GBP',
+              value: '' + this.cartTotal
+          }
+      }
+    };
+  }
 
   sumCart() {
     // Reset cart total before use.
@@ -158,5 +177,7 @@ export class CheckoutPageComponent implements OnInit {
     window.localStorage.setItem('cartContents', JSON.stringify(inputCart));
     this.cartContents = JSON.parse(window.localStorage.getItem('cartContents'));
     this.sumCart();
+    // Now we need to convert the cart into a paypal transaction object array.
+    this.convertToPaypalCart();
   }
 }

@@ -28,3 +28,9 @@ img {
   padding-left: 7.5px;
   padding-right: 7.5px;
 }
+
+.paypalControls {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
