@@ -3,7 +3,7 @@ import Item from '../Item';
 import CartItem from '../CartItem';
 import { ItemService } from '../item.service';
 import { BaseCartItem, CartService } from 'ng-shopping-cart';
-import { delay } from 'q';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-menu-items',
@@ -95,14 +95,14 @@ export class MenuItemsComponent implements OnInit {
     // Get the button and alert that's relevent to the item.
     const alert = document.getElementById(id + 'alert') as HTMLDivElement;
     const button = document.getElementById(id + 'button') as HTMLButtonElement;
-    // Show the alert + hide the button
-    alert.style.display = 'block';
+    // Hide the button then fade the alert in.
     button.style.display = 'none';
+    $('#' + id + 'alert').fadeIn(200);
 
-    // Then, 1750ms later, hide the alert + show the button.
+    // Then, 1750ms later, hide the alert + fade the button in.
     setTimeout(() => {
       alert.style.display = 'none';
-      button.style.display = '';
+      $('#' + id + 'button').fadeIn(200);
     }, 1750);
   }
 }
