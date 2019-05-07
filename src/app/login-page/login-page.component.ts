@@ -11,6 +11,7 @@ import { sha3_256 } from 'js-sha3';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
+
 export class LoginPageComponent implements OnInit {
 
   loginForm: FormGroup;

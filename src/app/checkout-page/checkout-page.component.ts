@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import CartItem from '../CartItem';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest, ITransactionItem, IUnitAmount } from 'ngx-paypal';
-import * as $ from 'jquery';
-import Item from '../Item';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-checkout-page',
@@ -22,7 +22,7 @@ export class CheckoutPageComponent implements OnInit {
   index = 0;
   cartDisplayTotal = '';
 
-  constructor() {
+  constructor(private os: OrderService, private route: ActivatedRoute, private router: Router) {
 
   }
 
@@ -59,7 +59,31 @@ export class CheckoutPageComponent implements OnInit {
         });
       },
       onClientAuthorization: (data) => {
+        // A string array for the ordered items.
+        let purchaseItems: string[] = new Array();
+        // Build a string array of items that were ordered.
+        for (const currItem of this.paypalCart) {
+          let tempItem = '';
+          tempItem = currItem.quantity + ' x ' + currItem.name;
+          purchaseItems.push(tempItem);
+        }
+
+        // Create the string array with the order payer details.
+        const payerDetails: string[] = new Array(data.payer.payer_id,
+                                                data.payer.email_address,
+                                                data.payer.name.given_name + ' ' + data.payer.name.surname
+                                                );
+
+        // After building the ordered items string array, start to build the order item.
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        // Empty cart after successful order.
+        this.emptyCart();
+        this.route.params.subscribe(params => {
+          this.os.addOrder(data.id, data.create_time, payerDetails, purchaseItems).subscribe((data: string) =>{
+            this.router.navigate(['home']);
+            // Change to successful order page.
+          });
+        });
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
@@ -167,10 +191,6 @@ export class CheckoutPageComponent implements OnInit {
     }
     // Set and update cart information.
     this.updateCart(this.cartContents);
-  }
-
-  checkoutCart() {
-
   }
 
   updateCart(inputCart) {

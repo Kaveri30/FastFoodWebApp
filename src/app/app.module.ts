@@ -10,6 +10,8 @@ import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemService } from './item.service';
+import { AccountService } from './account.service';
+import { OrderService } from './order.service';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -46,7 +48,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     AngularFontAwesomeModule,
     NgxPayPalModule,
   ],
-  providers: [ItemService],
+  providers: [ItemService, AccountService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

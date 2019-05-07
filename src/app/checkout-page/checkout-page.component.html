@@ -5,7 +5,12 @@
 <div class="tableDiv">
   <table *ngIf="cartContents.length !== 0" class="table table-hover table-striped text-center tableDiv">
       <thead style="font-weight: bold;">
-        <td colspan="2">Item</td>
+        <td colspan="2">
+          <div style="float:left;">
+            <button (click) = "emptyCart()" class="btn btn-secondary emptyButton">Empty Cart</button>
+          </div>
+          Item
+        </td>
         <td>Quantity</td>
         <td>Price</td>
         <td>Total</td>
@@ -37,4 +42,3 @@
 <div class="paypalControls">
   <ngx-paypal [config]="payPalConfig"></ngx-paypal>
 </div>
-<button (click) = "emptyCart()" class="btn btn-primary emptyButton">Empty Cart</button>
