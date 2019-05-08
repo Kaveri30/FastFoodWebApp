@@ -204,4 +204,8 @@ export class CheckoutPageComponent implements OnInit {
     // Now we need to convert the cart into a paypal transaction object array.
     this.convertToPaypalCart();
   }
+
+  goShopping() {
+    this.router.navigate(['menu']);
+  }
 }

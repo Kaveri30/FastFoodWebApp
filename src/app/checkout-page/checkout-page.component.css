@@ -34,3 +34,9 @@ img {
   margin-right: auto;
   width: 50%;
 }
+
+.shoppingButton {
+  margin-left: auto;
+  margin-right: auto;
+  display:block;
+}

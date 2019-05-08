@@ -39,6 +39,9 @@
 </div>
 
 <br>
-<div class="paypalControls">
+<div *ngIf="cartContents.length !== 0" class="paypalControls">
   <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+</div>
+<div *ngIf="cartContents.length === 0" class="shoppingButton">
+  <button (click)="goShopping()" class="btn btn-primary shoppingButton">Start shopping!</button>
 </div>
