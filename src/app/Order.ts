@@ -3,4 +3,5 @@ export default class Order {
   orderCreateTime: string;
   orderPayer: string[];
   orderPurchaseItems: string[];
+  _id: string;
 }

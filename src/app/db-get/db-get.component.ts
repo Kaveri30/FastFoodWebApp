@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import Item from '../Item';
 import Account from '../Account';
+import Order from '../Order';
 import { ItemService } from '../item.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { AccountService } from '../account.service';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-db-get',
@@ -15,6 +17,7 @@ export class DbGetComponent implements OnInit {
 
   items: Item[];
   accounts: Account[];
+  orders: Order[];
   adminLoggedIn: string = window.localStorage.getItem('adminLoggedIn');
   databaseDisplayData: string;
   popupDiv: HTMLDivElement;
@@ -23,7 +26,7 @@ export class DbGetComponent implements OnInit {
   mouseY: string;
 
   constructor(private is: ItemService, private route: ActivatedRoute, private router: Router,
-              private sanitizer: DomSanitizer, private as: AccountService) {
+              private sanitizer: DomSanitizer, private as: AccountService, private os: OrderService) {
 
   }
 
@@ -52,6 +55,10 @@ export class DbGetComponent implements OnInit {
       this.as.getAccounts().subscribe((data: Account[]) => {
         this.accounts = data;
         });
+      // Get the accounts.
+      this.os.getOrders().subscribe((data: Order[]) => {
+        this.orders = data;
+        });
     } else {
       window.alert('You are not an admin!');
       this.router.navigate(['home']);
@@ -72,6 +79,11 @@ export class DbGetComponent implements OnInit {
           console.log('Deleted account: ' + id);
           this.getObjects();
           });
+      } else if (this.databaseDisplayData === 'orders') {
+        this.os.deleteOrder(id).subscribe(res => {
+          console.log('Deleted order: ' + id);
+          this.getObjects();
+          });
       }
     } else {
       window.alert('You are not an admin!');
@@ -83,12 +95,14 @@ export class DbGetComponent implements OnInit {
     // First we need to get the button.
     const itemLabel: HTMLLabelElement = document.getElementById('itemLabel') as HTMLLabelElement;
     const accountLabel: HTMLLabelElement = document.getElementById('accountLabel') as HTMLLabelElement;
+    const orderLabel: HTMLLabelElement = document.getElementById('orderLabel') as HTMLLabelElement;
 
     // Then we want to determine which button was pressed.
     if (dataType === 'items') {
       // First we need to change which button is active.
       itemLabel.classList.add('active');
       accountLabel.classList.remove('active');
+      orderLabel.classList.remove('active');
       // We set the databaseDisplayData
       window.localStorage.setItem('databaseDisplayData', 'items');
       // Then we want to repopulate the table with the new data.
@@ -96,9 +110,19 @@ export class DbGetComponent implements OnInit {
     } else if (dataType === 'accounts') {
       // First we need to change which button is active.
       itemLabel.classList.remove('active');
+      orderLabel.classList.remove('active')
       accountLabel.classList.add('active');
       // We set the databaseDisplayData
       window.localStorage.setItem('databaseDisplayData', 'accounts');
+      // Then we want to repopulate the table with the new data.
+      this.getObjects();
+    } else if (dataType === 'orders') {
+      // First we need to change which button is active.
+      itemLabel.classList.remove('active');
+      orderLabel.classList.add('active')
+      accountLabel.classList.remove('active');
+      // We set the databaseDisplayData
+      window.localStorage.setItem('databaseDisplayData', 'orders');
       // Then we want to repopulate the table with the new data.
       this.getObjects();
     }

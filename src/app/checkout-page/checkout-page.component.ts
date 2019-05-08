@@ -21,6 +21,7 @@ export class CheckoutPageComponent implements OnInit {
   cartTotal = 0;
   index = 0;
   cartDisplayTotal = '';
+  loggedUser = window.localStorage.getItem('loggedUser');
 
   constructor(private os: OrderService, private route: ActivatedRoute, private router: Router) {
 
@@ -78,10 +79,11 @@ export class CheckoutPageComponent implements OnInit {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         // Empty cart after successful order.
         this.emptyCart();
+        // Add order to the database.
         this.route.params.subscribe(params => {
           this.os.addOrder(data.id, data.create_time, payerDetails, purchaseItems).subscribe((data: string) =>{
-            this.router.navigate(['home']);
-            // Change to successful order page.
+            // Navigate to successful order page.
+            this.router.navigate(['success']);
           });
         });
       },
@@ -92,7 +94,9 @@ export class CheckoutPageComponent implements OnInit {
         console.log('OnError', err);
       },
       onClick: () => {
-        console.log('onClick');
+        if (this.loggedUser === 'admin') {
+          return;
+        }
       },
     };
   }

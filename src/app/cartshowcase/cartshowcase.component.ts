@@ -18,6 +18,7 @@ export class CartshowcaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    // On initialisation, update the cart contents and sum it.
     this.updateCartContents();
     this.sumCart();
     // When initialised, update the cart sum + contents every 1000ms.
@@ -30,9 +31,11 @@ export class CartshowcaseComponent implements OnInit {
   updateCartContents() {
     // Get cart items
     this.cartContents = JSON.parse(window.localStorage.getItem('cartContents'));
+    // If there are no items, display n oitems.
     if (this.cartContents.length === 0) {
       this.cartDisplay = 'No items in cart!';
     } else {
+      // Else, display how many items.
       this.cartDisplay = this.cartContents.length + ' items';
     }
   }
