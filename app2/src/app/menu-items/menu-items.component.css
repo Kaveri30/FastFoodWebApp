@@ -1,0 +1,46 @@
+.itemNameDiv, .itemPriceDiv {
+  text-align: center;
+}
+
+.itemQuantityDiv {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.mainTable, .sideTable, .drinkTable, .dessertTable {
+  margin-left:auto;
+  margin-right:auto;
+  border-collapse: separate;
+  border-spacing: 8px;
+}
+
+p {
+  text-align: center;
+}
+
+.divBr {
+  padding: 3px;
+}
+
+.priceTag {
+  font-weight: bold;
+}
+
+.form-control {
+  width: 22%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.alert {
+  text-align: center;
+}
+
+#testDiv {
+  width:100px;
+  height: 100px;
+  position: absolute;
+  background-color: black;
+}

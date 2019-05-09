@@ -1,0 +1,51 @@
+<br>
+<hr>
+<h1>Create new account</h1>
+<hr>
+<div class="alert alert-secondary text-center popup" id="existingUser" style="display:none;">
+    Username already exists, please try another!
+</div>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-6">Account name</label>
+        <input type="text" class="form-control" formControlName="accountLogin" #accountLogin />
+      </div>
+      <div *ngIf="angForm.controls['accountLogin'].invalid && (angForm.controls['accountLogin'].dirty || angForm.controls['accountLogin'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['accountLogin'].errors.required">
+          Account name is requried.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-6">Account email</label>
+        <input type="email" class="form-control" formControlName="accountEmail" #accountEmail ngModel email="true"/>
+      </div>
+      <div *ngIf="angForm.controls['accountEmail'].invalid && (angForm.controls['accountEmail'].dirty || angForm.controls['accountEmail'].touched)" class="alert alert-danger">
+          Must be a valid email address.
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Password</label>
+        <input type="password" class="form-control" formControlName="accountPassword" #accountPassword />
+      </div>
+      <div *ngIf="angForm.controls['accountPassword'].invalid && (angForm.controls['accountPassword'].dirty || angForm.controls['accountPassword'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['accountPassword'].errors.required">
+          Password is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="addAccount(accountLogin.value, accountEmail.value, accountPassword.value)"
+            [disabled]="angForm.pristine || angForm.invalid"
+            class="btn btn-primary">
+            Create account
+         </button>
+    </div>
+    </form>
+  </div>
+</div>
+<br>
+<div class="card">
+  <h5>
+    Already have an account? &nbsp; <button class="btn btn-primary" (click)="goToLogin()">Login</button>
+  </h5>
+</div>

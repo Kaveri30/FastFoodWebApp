@@ -1,0 +1,100 @@
+<br>
+<hr>
+<h1>Database items: </h1>
+<hr>
+
+<div class="text-center">
+  <div class="btn-group btn-group-toggle" style="z-index: 0;">
+    <label id="itemLabel" class="btn btn-secondary active">
+      <input type="radio" name="options" (click)="changeData('items')" autocomplete="off"> Items
+    </label>
+    <label id="accountLabel" class="btn btn-secondary">
+      <input type="radio" name="options" (click)="changeData('accounts')" autocomplete="off" checked> Accounts
+    </label>
+    <label id="orderLabel" class="btn btn-secondary">
+      <input type="radio" name="options" (click)="changeData('orders')" autocomplete="off"> Orders
+    </label>
+  </div>
+</div>
+
+<br>
+
+<div class="table-responsive">
+  <table *ngIf="databaseDisplayData === 'items'" class="table table-hover table-striped">
+    <thead>
+    <tr>
+        <td>Item name</td>
+        <td>Item type</td>
+        <td>Item image URL</td>
+        <td>Item price</td>
+        <td colspan="2">Actions</td>
+    </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let item of items">
+            <td>{{ item.itemName }}</td>
+            <td>{{ item.itemType }}</td>
+            <td (mouseenter) ="mouseEnter(item.itemPictureLocation, $event)"  (mouseleave) ="mouseLeave()"><a href="{{ item.itemPictureLocation }}" target="_blank">{{ item.itemPictureLocation }}</a></td>
+            <td>{{ item.itemPrice }}</td>
+            <td><a [routerLink]="['update/', item._id]" class="btn btn-primary">Edit</a></td>
+            <td><a (click) = "deleteObject(item._id)" class="btn btn-danger text-white">Delete</a></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <table *ngIf="databaseDisplayData === 'accounts'" class="table table-hover table-striped">
+    <thead>
+    <tr>
+        <td>Account login</td>
+        <td>Account email</td>
+        <td>Account password (SHA-3 256-bit encrypted)</td>
+        <td>Admin rights</td>
+        <td colspan="2">Actions</td>
+    </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let account of accounts">
+            <td>{{ account.accountLogin }}</td>
+            <td>{{ account.accountEmail }}</td>
+            <td>{{ account.accountPassword }}</td>
+            <td>{{ account.isAdmin }}</td>
+            <td><a [routerLink]="['update/', account._id]" class="btn btn-primary">Edit</a></td>
+            <td><a (click) = "deleteObject(account._id)" class="btn btn-danger text-white">Delete</a></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <table *ngIf="databaseDisplayData === 'orders'" class="table table-hover table-striped">
+    <thead>
+    <tr>
+        <td>Order ID</td>
+        <td>Order user</td>
+        <td>Order Create Time</td>
+        <td>Order Payer information. (Payer ID, email, name)</td>
+        <td>Order purchase items</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let order of orders">
+            <td>{{ order.orderID }}</td>
+            <td>{{ order.orderUser }}</td>
+            <td>{{ order.orderCreateTime }}</td>
+            <td>{{ order.orderPayer }}</td>
+            <td>
+              <div *ngFor="let orderItem of order.orderPurchaseItems">
+                {{ orderItem }}
+              </div>
+            </td>
+            <!-- <td><a [routerLink]="['update/', order._id]" class="btn btn-primary">Edit</a></td> -->
+            <td><a (click) = "deleteObject(order._id)" class="btn btn-danger text-white">Delete</a></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="databaseDisplayData === 'items'" class="rounded" [style.background-image]="popupImage" [style.top]="mouseY" [style.left]="mouseX" id="popupDiv">
+
+</div>

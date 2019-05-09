@@ -1,0 +1,72 @@
+<br>
+<hr>
+<h1>Your shopping cart</h1>
+<hr>
+<div class="tableDiv">
+  <table *ngIf="cartContents.length !== 0" class="table table-hover table-striped text-center tableDiv">
+      <thead style="font-weight: bold;">
+        <td colspan="2">
+          <div style="float:left;">
+            <button (click) = "emptyCart()" class="btn btn-secondary emptyButton">Empty Cart</button>
+          </div>
+          Item
+        </td>
+        <td>Quantity</td>
+        <td>Price</td>
+        <td>Total</td>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of cartContents">
+            <td>{{ item.item.itemName }}</td>
+            <td><img src="{{ item.item.itemPictureLocation }}"/></td>
+            <td><button class="btn btn-primary minusButton" (click)="decreaseQuantity(item)">-</button>&nbsp;{{ item.quantity }}&nbsp;<button class="btn btn-primary addButton" (click)="increaseQuantity(item)">+</button></td>
+            <td>&pound;{{ item.item.itemPrice }}</td>
+            <td>&pound;{{ (item.item.itemPrice * item.quantity).toFixed(2) }}</td>
+          </tr>
+      </tbody>
+      <tfoot>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total cost: &pound;{{ cartDisplayTotal }}</td>
+      </tfoot>
+    </table>
+    <br>
+    <div *ngIf="cartContents.length === 0" class="card">
+      <h3>Your cart is empty!</h3>
+    </div>
+</div>
+
+<br>
+<div *ngIf="cartContents.length !== 0" class="paypalControls">
+  <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+</div>
+<div *ngIf="cartContents.length === 0" class="shoppingButton">
+  <button (click)="goShopping()" class="btn btn-primary shoppingButton">Start shopping!</button>
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade loginModal" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">You are not logged in!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>If you create an account and login you will have access to your order history and other useful benefits.</p>
+          <br>
+          <p>However, this is not required and you are able to checkout as a guest if you would like.</p>
+        </div>
+        <div class="modal-footer text-center">
+          <button type="button" class="btn btn-primary" (click)="createAccount()" data-dismiss="modal">Create an account</button>
+          <button type="button" class="btn btn-primary" (click)="accountLogin()" data-dismiss="modal">Login</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue as guest</button>
+        </div>
+      </div>
+
+    </div>
+  </div>

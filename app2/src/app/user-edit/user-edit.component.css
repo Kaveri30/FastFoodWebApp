@@ -1,0 +1,16 @@
+.card, hr {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.popup {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+

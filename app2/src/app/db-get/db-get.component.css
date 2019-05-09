@@ -1,0 +1,17 @@
+h1 {
+  text-align: center;
+}
+
+#popupDiv{
+  position:absolute;
+  display:none;
+  height: 140px;
+  width: 190px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#popupImage {
+  height:auto;
+  width:100%;
+}

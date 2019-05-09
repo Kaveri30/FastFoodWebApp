@@ -1,0 +1,63 @@
+<ng2-slim-loading-bar class="highIndex" color="white" [height]="'8px'"></ng2-slim-loading-bar>
+<nav class="navbar navbar-expand-sm bg-primary sticky highIndex">
+    <a class="navbar-brand text-white">{{ title }}</a>
+  <div class="container-fluid">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a routerLink="home" class="nav-link text-white" routerLinkActive="active">
+              <fa name="home"></fa>&nbsp;Home
+            </a>
+          </li>
+        <li class="nav-item">
+            <a routerLink="menu" class="nav-link text-white" routerLinkActive="active">
+              <fa name="cutlery"></fa>&nbsp;Food menu
+            </a>
+          </li>
+    </ul>
+    <ul class="navbar-nav" *ngIf="loggedUser !== ''  && adminLoggedIn === 'true'">
+        <li class="nav-item">
+            <a routerLink="checkout" class="nav-link text-white" routerLinkActive="active">
+              <app-cartshowcase></app-cartshowcase>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="adminCP" class="nav-link text-white" routerLinkActive="active">
+              <fa name="cog"></fa>&nbsp;AdminCP
+            </a>
+          </li>
+      </ul>
+      <ul class="navbar-nav" *ngIf="loggedUser !== ''  && adminLoggedIn === 'false'">
+        <li class="nav-item">
+            <a routerLink="checkout" class="nav-link text-white" routerLinkActive="active">
+              <app-cartshowcase></app-cartshowcase>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="userCP" class="nav-link text-white" routerLinkActive="active">
+              <fa name="cog"></fa>&nbsp;UserCP
+            </a>
+          </li>
+      </ul>
+      <ul class="navbar-nav" *ngIf="loggedUser === ''">
+        <li class="nav-item">
+            <a routerLink="checkout" class="nav-link text-white" routerLinkActive="active">
+              <app-cartshowcase></app-cartshowcase>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="accountcreate" class="nav-link text-white" routerLinkActive="active">
+              <fa name="user"></fa>&nbsp;Create account / Login
+            </a>
+          </li>
+      </ul>
+  </div>
+</nav>
+
+<div class="container lowIndex">
+  <router-outlet></router-outlet>
+</div>
+
+<br>
+<div id="footer">
+  <app-footer></app-footer>
+</div>

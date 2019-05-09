@@ -1,0 +1,102 @@
+<br>
+<hr>
+<h1>Edit account details</h1>
+<hr>
+<div class="text-center">
+  <div class="btn-group btn-group-toggle">
+    <label id="passwordLabel" class="btn btn-secondary active">
+      <input type="radio" name="options" (click)="changeData('password')"> Password
+    </label>
+    <label id="emailLabel" class="btn btn-secondary">
+      <input type="radio" name="options" (click)="changeData('email')"> Email
+    </label>
+  </div>
+</div>
+<br>
+<div class="alert alert-success text-center popup" id="passwordSuccess" style="display:none;">
+    Successfully updated your password!
+</div>
+<div class="alert alert-success text-center popup" id="emailSuccess" style="display:none;">
+    Successfully updated your email!
+</div>
+<div class="alert alert-secondary text-center popup" id="passwordNoMatch" style="display:none;">
+    Your new password + confirmation do not match!
+</div>
+<div class="alert alert-secondary text-center popup" id="emailNoMatch" style="display:none;">
+    Your new email + confirmation do not match!
+</div>
+<div class="alert alert-secondary text-center popup" id="incorrectPassword" style="display:none;">
+    Current password is incorrect!
+</div>
+<div class="card">
+  <div class="card-body">
+    <form *ngIf="editType === 'password'" [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-8">Current password</label>
+        <input type="password" class="form-control" formControlName="currentPassword" #currentPassword/>
+      </div>
+      <div *ngIf="angForm.controls['currentPassword'].invalid && (angForm.controls['currentPassword'].dirty || angForm.controls['currentPassword'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['currentPassword'].errors.required">
+            Current password is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-6">New password</label>
+        <input type="password" class="form-control" formControlName="newPassword" #newPassword />
+      </div>
+      <div *ngIf="angForm.controls['newPassword'].invalid && (angForm.controls['newPassword'].dirty || angForm.controls['newPassword'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['newPassword'].errors.required">
+          New password is required.
+        </div>
+      </div>
+      <div class="form-group">
+          <label class="col-md-6">Confirm new password</label>
+          <input type="password" class="form-control" formControlName="confirmPassword" #confirmPassword/>
+        </div>
+        <div *ngIf="angForm.controls['confirmPassword'].invalid && (angForm.controls['confirmPassword'].dirty || angForm.controls['confirmPassword'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['confirmPassword'].errors.required">
+            Confirming your password is required.
+          </div>
+        </div>
+      <div class="form-group">
+        <button (click)="updatePassword(currentPassword.value, newPassword.value, confirmPassword.value)"
+        [disabled]="angForm.invalid"
+        class="btn btn-primary">Update password</button>
+      </div>
+    </form>
+    <!-- Form for the email starts here -->
+    <form *ngIf="editType === 'email'" [formGroup]="angForm" novalidate>
+      <strong><p class="text-center" *ngIf="currAccount">Your current email is: {{ currAccount.accountEmail }}</p></strong>
+        <div class="form-group">
+          <label class="col-md-8">Current password</label>
+          <input type="password" class="form-control" formControlName="currentPassword" #currentPassword/>
+        </div>
+        <div *ngIf="angForm.controls['currentPassword'].invalid && (angForm.controls['currentPassword'].dirty || angForm.controls['currentPassword'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['currentPassword'].errors.required">
+              Current password is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-6">New email</label>
+          <input type="email" class="form-control" formControlName="newEmail" #newEmail ngModel email="true"/>
+        </div>
+        <div *ngIf="angForm.controls['newEmail'].invalid && (angForm.controls['newEmail'].dirty || angForm.controls['newEmail'].touched)" class="alert alert-danger">
+            Your new email address must be valid.
+        </div>
+        <div class="form-group">
+            <label class="col-md-6">Confirm new email</label>
+            <input type="email" class="form-control" formControlName="confirmEmail" #confirmEmail/>
+          </div>
+          <div *ngIf="angForm.controls['confirmEmail'].invalid && (angForm.controls['confirmEmail'].dirty || angForm.controls['confirmEmail'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['confirmEmail'].errors.required">
+              Confirming your new email address is required.
+            </div>
+          </div>
+        <div class="form-group">
+          <button (click)="updateEmail(currentPassword.value, newEmail.value, confirmEmail.value)"
+          [disabled]="angForm.invalid"
+          class="btn btn-primary">Update email</button>
+        </div>
+      </form>
+  </div>
+</div>

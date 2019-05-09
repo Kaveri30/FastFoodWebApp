@@ -1,0 +1,93 @@
+<br>
+<div class="card">
+  <div class="card-body">
+    <form *ngIf="databaseDisplayData === 'items'" [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Item name</label>
+        <input type="text" class="form-control" formControlName="itemName" #itemName [(ngModel)] = "object.itemName" />
+      </div>
+      <div *ngIf="angForm.controls['itemName'].invalid && (angForm.controls['itemName'].dirty || angForm.controls['itemName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['itemName'].errors.required">
+          Item name is required.
+        </div>
+      </div>
+      <div class="form-group">
+          <label class="col-md-4">Item type</label>
+          <select class="form-control" formControlName="itemType" #itemType>
+              <option class="alert alert-danger" value="" selected disabled hidden>You must choose an item!</option>
+              <option value="main">Main</option>
+              <option value="side">Side</option>
+              <option value="drink">Drink</option>
+              <option value="dessert">Dessert</option>
+            </select>
+        </div>
+        <div *ngIf="angForm.controls['itemType'].invalid && (angForm.controls['itemType'].dirty || angForm.controls['itemType'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['itemType'].errors.required">
+            Item type is required.
+          </div>
+        </div>
+      <div class="form-group">
+        <label class="col-md-6">Item image URL location </label>
+        <input type="text" class="form-control" formControlName="itemPictureLocation" #itemPictureLocation [(ngModel)] = "object.itemPictureLocation" />
+      </div>
+      <div *ngIf="angForm.controls['itemPictureLocation'].invalid && (angForm.controls['itemPictureLocation'].dirty || angForm.controls['itemPictureLocation'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['itemPictureLocation'].errors.required">
+          Item image URL location is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Item price </label>
+        <input type="text" class="form-control" formControlName="itemPrice" #itemPrice [(ngModel)] = "object.itemPrice" />
+      </div>
+      <div *ngIf="angForm.controls['itemPrice'].invalid && (angForm.controls['itemPrice'].dirty || angForm.controls['itemPrice'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['itemPrice'].errors.required">
+          Item price is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="updateItem(itemName.value, itemType.value, itemPictureLocation.value, itemPrice.value)"
+        [disabled]="angForm.invalid"
+        class="btn btn-primary">Update Item</button>
+      </div>
+    </form>
+    <!-- Account edit form here. -->
+    <form *ngIf="databaseDisplayData === 'accounts'" [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Account login</label>
+        <input type="text" class="form-control" formControlName="accountLogin" #accountLogin [(ngModel)] = "object.accountLogin" />
+      </div>
+      <div *ngIf="angForm.controls['accountLogin'].invalid && (angForm.controls['accountLogin'].dirty || angForm.controls['accountLogin'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['accountLogin'].errors.required">
+          Account login is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-6">Account email</label>
+        <input type="email" class="form-control" formControlName="accountEmail" #accountEmail [(ngModel)] = "object.accountEmail" />
+      </div>
+      <div *ngIf="angForm.controls['accountEmail'].invalid && (angForm.controls['accountEmail'].dirty || angForm.controls['accountEmail'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['accountEmail'].errors.required">
+          A valid email is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Admin rights</label>
+        <select class="form-control" formControlName="adminRights" #adminRights>
+            <option class="alert alert-danger" value="" selected disabled hidden>You must choose the admin rights!</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+      </div>
+      <div *ngIf="angForm.controls['adminRights'].invalid && (angForm.controls['adminRights'].dirty || angForm.controls['adminRights'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['adminRights'].errors.required">
+          Admin rights are required!
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="updateAccount(accountLogin.value, accountEmail.value, adminRights.value)"
+        [disabled]="angForm.invalid"
+        class="btn btn-primary">Update Account</button>
+      </div>
+    </form>
+  </div>
+</div>

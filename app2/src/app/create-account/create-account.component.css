@@ -1,0 +1,28 @@
+hr {
+  width: 50%;
+}
+
+.card {
+  width: 50%;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+h5 {
+  text-align: center;
+  padding-top:10px;
+}
+
+h6 {
+  cursor: pointer;
+}
+
+.popup {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
