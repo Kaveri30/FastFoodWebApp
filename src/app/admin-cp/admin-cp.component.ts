@@ -36,6 +36,16 @@ export class AdminCpComponent implements OnInit {
       // Send the user home, and reload the page.
       this.location.go('home');
       location.reload();
+    } else if (action === 'password') {
+      // Set the editType for the edit page.
+      window.localStorage.setItem('editType', 'password');
+      // Redirect to the account edit page.
+      this.router.navigate(['useredit']);
+    } else if (action === 'email') {
+      // Set the editType for the edit page.
+      window.localStorage.setItem('editType', 'email');
+      // Redirect to the account edit page.
+      this.router.navigate(['useredit']);
     }
 
   }

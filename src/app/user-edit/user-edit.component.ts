@@ -24,6 +24,12 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    // First we need to check if there's an edit type, if there isn't we assume password.
+    if (this.editType === '') {
+      this.editType = 'password';
+    }
+    // Need to check data type when page loads to set the buttons up correctly.
+    this.checkButtons();
     // Get the account.
     this.updateAccount();
     // Then create the form.
@@ -31,12 +37,20 @@ export class UserEditComponent implements OnInit {
   }
 
   createForm() {
+    if (this.editType === 'password') {
       this.angForm = this.fb.group({
         currentPassword: ['', Validators.required],
         newPassword: ['', Validators.required],
         confirmPassword: ['', Validators.required]
       });
+    } else if (this.editType === 'email') {
+      this.angForm = this.fb.group({
+        currentPassword: ['', Validators.required],
+        newEmail: ['', Validators.required],
+        confirmEmail: ['', Validators.required]
+      });
     }
+  }
 
   changeData(dataType: string) {
     // First we need to get the button.
@@ -52,6 +66,8 @@ export class UserEditComponent implements OnInit {
       window.localStorage.setItem('editType', 'password');
       // Then get the type again.
       this.editType = window.localStorage.getItem('editType');
+      // Then recreate the form
+      this.createForm();
     } else if (dataType === 'email') {
       // First we need to change which button is active.
       passwordLabel.classList.remove('active');
@@ -60,6 +76,8 @@ export class UserEditComponent implements OnInit {
       window.localStorage.setItem('editType', 'email');
       // Then get the type again.
       this.editType = window.localStorage.getItem('editType');
+      // Then recreate the form
+      this.createForm();
     }
   }
 
@@ -115,6 +133,45 @@ export class UserEditComponent implements OnInit {
     }
   }
 
+  updateEmail(currentPassword: string, newEmail: string, confirmEmail: string) {
+    // First we need to check if the current password is correct.
+    // Need to encrypt the input password as the stored passwords are all encrypted.
+    if (sha3_256(currentPassword) === this.currAccount.accountPassword) {
+      // Then we need to check to see if the new + confirm emails are the same.
+      if (newEmail === confirmEmail) {
+        this.route.params.subscribe(params => {
+        // If they are, we can then update to the new email.
+        this.as.updateAccount(this.currAccount.accountLogin, this.currAccount.accountPassword,
+                              newEmail, this.currAccount.isAdmin, this.currAccount._id).subscribe((data: string) => {
+          // After setting the new email, we need to update the account to the new details.
+          this.updateAccount();
+          $('#emailSuccess').fadeIn(200);
+          // Then, 3000ms later, hide the alert + fade the button in.
+          setTimeout(() => {
+            $('#emailSuccess').fadeOut(200);
+          }, 3000);
+          // Clears the users focus.
+          (document.activeElement as HTMLElement).blur();
+          // Recreate form, essentially resets it.
+          this.createForm();
+          });
+        });
+      } else {
+        $('#emailNoMatch').fadeIn(200);
+        // Then, 3000ms later, hide the alert + fade the button in.
+        setTimeout(() => {
+          $('#emailNoMatch').fadeOut(200);
+        }, 3000);
+      }
+    } else {
+      $('#incorrectPassword').fadeIn(200);
+      // Then, 3000ms later, hide the alert + fade the button in.
+      setTimeout(() => {
+        $('#incorrectPassword').fadeOut(200);
+      }, 3000);
+    }
+  }
+
   updateAccount() {
     // Get the user accounts.
     this.as.getAccounts().subscribe((data: Account[]) => {
@@ -122,5 +179,22 @@ export class UserEditComponent implements OnInit {
       // Get the specific logged user account.
       this.getCurrentAccount();
     });
+  }
+
+  checkButtons() {
+    // First we need to get the button.
+    const passwordLabel: HTMLLabelElement = document.getElementById('passwordLabel') as HTMLLabelElement;
+    const emailLabel: HTMLLabelElement = document.getElementById('emailLabel') as HTMLLabelElement;
+
+    // Then we want to determine which button was pressed.
+    if (this.editType === 'password') {
+      // Change the active buttons to match the editType.
+      passwordLabel.classList.add('active');
+      emailLabel.classList.remove('active');
+    } else if (this.editType === 'email') {
+      // Change the active buttons to match the editType.
+      passwordLabel.classList.remove('active');
+      emailLabel.classList.add('active');
+    }
   }
 }
