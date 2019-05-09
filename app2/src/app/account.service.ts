@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AccountService {
 
-  uri = 'http://localhost:4000/account';
+  uri = 'http://localhost:3000/account';
 
   constructor(private http: HttpClient) { }
 

@@ -19,7 +19,7 @@ import 'bootstrap';
 export class AppComponent {
 
   cart: CartItem[] = new Array();
-  title = 'FastFoodWebApp';
+  title = 'FastFoodWebApp2';
   loggedUser = window.localStorage.getItem('loggedUser');
   adminLoggedIn = window.localStorage.getItem('adminLoggedIn');
   cartContents = JSON.parse(window.localStorage.getItem('cartContents'));
