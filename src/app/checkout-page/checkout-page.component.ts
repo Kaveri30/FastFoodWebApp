@@ -3,6 +3,7 @@ import CartItem from '../CartItem';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest, ITransactionItem, IUnitAmount } from 'ngx-paypal';
 import { OrderService } from '../order.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-checkout-page',
@@ -28,10 +29,6 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // If there's no user logged in, for order purposes, set the user to admin.
-    if (this.loggedUser === '') {
-      this.loggedUser = 'admin';
-    }
     // Get the cart on initialisation.
     this.cartContents = JSON.parse(window.localStorage.getItem('cartContents'));
     // Sum the cart up.
@@ -40,6 +37,13 @@ export class CheckoutPageComponent implements OnInit {
     this.convertToPaypalCart();
     // Get paypal set after doing cart
     this.initConfig();
+    // Check to see if there's no user & there's something in the cart.
+    if (this.loggedUser === '' && this.cartContents.length >= 1) {
+      // Set the loggedUser to admin just for the purpose of the order.
+      this.loggedUser = 'admin';
+      // Show the account login modal.
+      this.showModal();
+    }
   }
 
   private initConfig(): void {
@@ -209,5 +213,17 @@ export class CheckoutPageComponent implements OnInit {
 
   goShopping() {
     this.router.navigate(['menu']);
+  }
+
+  showModal() {
+    $('#myModal').modal('toggle');
+  }
+
+  createAccount() {
+    this.router.navigate(['accountcreate']);
+  }
+
+  accountLogin() {
+    this.router.navigate(['login']);
   }
 }

@@ -8,6 +8,7 @@ import { NavigationCancel,
         NavigationError,
         NavigationStart,
         Router } from '@angular/router';
+import 'bootstrap';
 
 @Component({
   selector: 'app-root',

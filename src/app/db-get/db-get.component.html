@@ -4,15 +4,15 @@
 <hr>
 
 <div class="text-center">
-  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <div class="btn-group btn-group-toggle" style="z-index: 0;">
     <label id="itemLabel" class="btn btn-secondary active">
-      <input type="radio" name="options" (click)="changeData('items')"> Items
+      <input type="radio" name="options" (click)="changeData('items')" autocomplete="off"> Items
     </label>
     <label id="accountLabel" class="btn btn-secondary">
-      <input type="radio" name="options" (click)="changeData('accounts')"> Accounts
+      <input type="radio" name="options" (click)="changeData('accounts')" autocomplete="off" checked> Accounts
     </label>
     <label id="orderLabel" class="btn btn-secondary">
-      <input type="radio" name="options" (click)="changeData('orders')"> Orders
+      <input type="radio" name="options" (click)="changeData('orders')" autocomplete="off"> Orders
     </label>
   </div>
 </div>

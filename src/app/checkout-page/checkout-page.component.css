@@ -40,3 +40,9 @@ img {
   margin-right: auto;
   display:block;
 }
+
+.loginModal {
+  z-index: 350000;
+  position: fixed;
+  top: 30%;
+}

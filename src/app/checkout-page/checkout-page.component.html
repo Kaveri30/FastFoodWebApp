@@ -45,3 +45,28 @@
 <div *ngIf="cartContents.length === 0" class="shoppingButton">
   <button (click)="goShopping()" class="btn btn-primary shoppingButton">Start shopping!</button>
 </div>
+
+  <!-- Modal -->
+  <div class="modal fade loginModal" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">You are not logged in!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>If you create an account and login you will have access to your order history and other useful benefits.</p>
+          <br>
+          <p>However, this is not required and you are able to checkout as a guest if you would like.</p>
+        </div>
+        <div class="modal-footer text-center">
+          <button type="button" class="btn btn-primary" (click)="createAccount()" data-dismiss="modal">Create an account</button>
+          <button type="button" class="btn btn-primary" (click)="accountLogin()" data-dismiss="modal">Login</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Continue as guest</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
