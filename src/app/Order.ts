@@ -3,5 +3,6 @@ export default class Order {
   orderCreateTime: string;
   orderPayer: string[];
   orderPurchaseItems: string[];
+  orderUser: string;
   _id: string;
 }

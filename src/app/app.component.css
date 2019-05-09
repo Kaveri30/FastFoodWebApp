@@ -17,3 +17,7 @@
 .lowIndex {
   z-index: 0;
 }
+
+.loadingBar {
+  z-index: 300000;
+}

@@ -12,6 +12,8 @@ export class CartshowcaseComponent implements OnInit {
   cartDisplayTotal = '';
   cartContents: CartItem[] = new Array();
   cartDisplay: string;
+  cartOldTotal = 0;
+  firstRun = true;
 
   constructor() {
 
@@ -21,14 +23,24 @@ export class CartshowcaseComponent implements OnInit {
     // On initialisation, update the cart contents and sum it.
     this.updateCartContents();
     this.sumCart();
+    // After doing the initialising cart, we then set first run to false.
+    this.firstRun = false;
     // When initialised, update the cart sum + contents every 1000ms.
     setInterval(() => {
       this.updateCartContents();
       this.sumCart();
-    }, 1000);
+    }, 500);
   }
 
   updateCartContents() {
+    const cartDiv = document.getElementById('cartHolder') as HTMLDivElement;
+    // Now we want to check to see if the cart is the same as the old, if it is, don't do any calculations.
+    if (this.cartTotal === this.cartOldTotal && this.firstRun === false) {
+      cartDiv.style.animation = '';
+    } else {
+      cartDiv.style.animation = 'pulse 0.5s, shake 0.5s';
+    }
+
     // Get cart items
     this.cartContents = JSON.parse(window.localStorage.getItem('cartContents'));
     // If there are no items, display n oitems.
@@ -38,6 +50,9 @@ export class CartshowcaseComponent implements OnInit {
       // Else, display how many items.
       this.cartDisplay = this.cartContents.length + ' items';
     }
+
+    // Set the old cart to this cart, so on the next loop we have a comparison.
+    this.cartOldTotal = this.cartTotal;
   }
 
   sumCart() {

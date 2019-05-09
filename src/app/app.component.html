@@ -1,16 +1,16 @@
-<ng2-slim-loading-bar color="white" [height]="'8px'"></ng2-slim-loading-bar>
+<ng2-slim-loading-bar class="highIndex" color="white" [height]="'8px'"></ng2-slim-loading-bar>
 <nav class="navbar navbar-expand-sm bg-primary sticky highIndex">
     <a class="navbar-brand text-white">{{ title }}</a>
   <div class="container-fluid">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
             <a routerLink="home" class="nav-link text-white" routerLinkActive="active">
-              Home
+              <fa name="home"></fa>&nbsp;Home
             </a>
           </li>
         <li class="nav-item">
             <a routerLink="menu" class="nav-link text-white" routerLinkActive="active">
-              Food menu
+              <fa name="cutlery"></fa>&nbsp;Food menu
             </a>
           </li>
     </ul>
@@ -22,7 +22,7 @@
           </li>
           <li class="nav-item">
             <a routerLink="adminCP" class="nav-link text-white" routerLinkActive="active">
-              AdminCP
+              <fa name="cog"></fa>&nbsp;AdminCP
             </a>
           </li>
       </ul>
@@ -33,8 +33,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" (click)="doLogout()" class="nav-link text-white">
-              Logout
+            <a routerLink="userCP" class="nav-link text-white" routerLinkActive="active">
+              <fa name="cog"></fa>&nbsp;UserCP
             </a>
           </li>
       </ul>
@@ -46,7 +46,7 @@
           </li>
           <li class="nav-item">
             <a routerLink="accountcreate" class="nav-link text-white" routerLinkActive="active">
-              Create account / Login
+              <fa name="user"></fa>&nbsp;Create account / Login
             </a>
           </li>
       </ul>
@@ -58,8 +58,6 @@
 </div>
 
 <br>
-<div id="footer" class="needthis">
+<div id="footer">
   <app-footer></app-footer>
 </div>
-
-

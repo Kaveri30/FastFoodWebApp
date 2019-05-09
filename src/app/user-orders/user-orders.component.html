@@ -1,0 +1,35 @@
+<br>
+<hr>
+<h1>Your previous orders</h1>
+<hr>
+<table *ngIf="userOrders.length !== 0" class="table table-hover table-striped">
+  <thead>
+  <tr>
+      <td>Order ID</td>
+      <td>Time ordered</td>
+      <td>Items ordered</td>
+  </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let order of userOrders">
+          <td>{{ order.orderID }}</td>
+          <td>{{ order.orderCreateTime }}</td>
+          <td>
+            <div *ngFor="let orderItems of order.orderPurchaseItems">
+              {{ orderItems }}
+            </div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+
+<div *ngIf="userOrders.length === 0" class="card card-secondary">
+  <br>
+  <h2>No orders found!</h2>
+  <br>
+  <h3>Please make an order to be able to view previous orders.</h3>
+  <br>
+  <button (click)="goShopping()" class="btn btn-primary shoppingButton">Start shopping!</button>
+  <br>
+</div>

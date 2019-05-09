@@ -49,6 +49,7 @@ orderRoutes.route('/update/:id').post(function (req, res) {
       order.orderCreateTime = req.body.orderCreateTime;
       order.orderPayer = req.body.orderPayer;
       order.orderPurchaseItems = req.body.orderPurchaseItems;
+      order.orderUser = req.body.orderUser;
 
       order.save().then(order => {
           res.json('Update complete');

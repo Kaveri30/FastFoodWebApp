@@ -36,8 +36,6 @@ export class AppComponent {
       this.cartContents = JSON.parse(window.localStorage.getItem('cartContents'));
     }
 
-    console.log(this.cartContents);
-
     // Set a global localStorage object for the title, so other pages can access it.
     window.localStorage.setItem('title', this.title);
 
@@ -73,14 +71,4 @@ export class AppComponent {
       this.loadingBar.stop();
     }
   }
-
-  doLogout() {
-    // Reset variables to no login.
-    window.localStorage.setItem('adminLoggedIn', 'false');
-    window.localStorage.setItem('loggedUser', '');
-    // Send the user home, and reload the page.
-    this.location.go('home');
-    location.reload();
-  }
-
 }

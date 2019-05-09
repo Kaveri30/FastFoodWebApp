@@ -1,0 +1,17 @@
+<br>
+<hr>
+<h1>User Control Panel</h1>
+<hr>
+<h4>From here, you can view your orders, change your password and logout.</h4>
+<hr>
+<table class="controlTable">
+    <td>
+      <button (click)="performAction('orders')" class="btn btn-primary">View order history</button>
+    </td>
+    <td>
+      <button (click)="performAction('details')" class="btn btn-primary">Change details</button>
+    </td>
+    <td>
+      <button (click)="performAction('logout')" class="btn btn-danger">Logout</button>
+    </td>
+  </table>

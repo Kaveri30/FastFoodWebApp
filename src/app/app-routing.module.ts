@@ -10,6 +10,9 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AdminCpComponent } from './admin-cp/admin-cp.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { SuccessComponent } from './success/success.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
+import { UserCpComponent } from './user-cp/user-cp.component';
 
 const routes: Routes = [
   {
@@ -45,12 +48,24 @@ const routes: Routes = [
     component: AdminCpComponent
   },
   {
+    path: 'userCP',
+    component: UserCpComponent
+  },
+  {
     path: 'accountcreate',
     component: CreateAccountComponent
   },
   {
     path: 'success',
     component: SuccessComponent
+  },
+  {
+    path: 'useredit',
+    component: UserEditComponent
+  },
+  {
+    path: 'userorders',
+    component: UserOrdersComponent
   }
 ];
 

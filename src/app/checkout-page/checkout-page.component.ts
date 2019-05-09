@@ -28,6 +28,10 @@ export class CheckoutPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    // If there's no user logged in, for order purposes, set the user to admin.
+    if (this.loggedUser === '') {
+      this.loggedUser = 'admin';
+    }
     // Get the cart on initialisation.
     this.cartContents = JSON.parse(window.localStorage.getItem('cartContents'));
     // Sum the cart up.
@@ -81,7 +85,7 @@ export class CheckoutPageComponent implements OnInit {
         this.emptyCart();
         // Add order to the database.
         this.route.params.subscribe(params => {
-          this.os.addOrder(data.id, data.create_time, payerDetails, purchaseItems).subscribe((data: string) =>{
+          this.os.addOrder(data.id, data.create_time, payerDetails, purchaseItems, this.loggedUser).subscribe((data: string) =>{
             // Navigate to successful order page.
             this.router.navigate(['success']);
           });
@@ -94,9 +98,7 @@ export class CheckoutPageComponent implements OnInit {
         console.log('OnError', err);
       },
       onClick: () => {
-        if (this.loggedUser === 'admin') {
-          return;
-        }
+        // When button is clicked
       },
     };
   }

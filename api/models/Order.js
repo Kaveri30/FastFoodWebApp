@@ -14,6 +14,9 @@ let Order = new Schema({
   },
   orderPurchaseItems: {
     type: Array
+  },
+  orderUser: {
+    type: String
   }
 },{
     collection: 'Orders'

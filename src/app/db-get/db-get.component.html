@@ -70,6 +70,7 @@
     <thead>
     <tr>
         <td>Order ID</td>
+        <td>Order user</td>
         <td>Order Create Time</td>
         <td>Order Payer information. (Payer ID, email, name)</td>
         <td>Order purchase items</td>
@@ -80,9 +81,14 @@
     <tbody>
         <tr *ngFor="let order of orders">
             <td>{{ order.orderID }}</td>
+            <td>{{ order.orderUser }}</td>
             <td>{{ order.orderCreateTime }}</td>
             <td>{{ order.orderPayer }}</td>
-            <td>{{ order.orderPurchaseItems }}</td>
+            <td>
+              <div *ngFor="let orderItem of order.orderPurchaseItems">
+                {{ orderItem }}
+              </div>
+            </td>
             <!-- <td><a [routerLink]="['update/', order._id]" class="btn btn-primary">Edit</a></td> -->
             <td><a (click) = "deleteObject(order._id)" class="btn btn-danger text-white">Delete</a></td>
         </tr>

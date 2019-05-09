@@ -22,24 +22,26 @@ export class OrderService {
     return this.http.get(`${this.uri}/delete/${id}`);
   }
 
-  addOrder(orderID, orderCreateTime, orderPayer, orderPurchaseItems) {
+  addOrder(orderID, orderCreateTime, orderPayer, orderPurchaseItems, orderUser) {
     const obj = {
       orderID: orderID,
       orderCreateTime: orderCreateTime,
       orderPayer: orderPayer,
-      orderPurchaseItems: orderPurchaseItems
+      orderPurchaseItems: orderPurchaseItems,
+      orderUser: orderUser
     };
     console.log(obj);
     return this.http.post(`${this.uri}/add`, obj);
     }
 
-  updateOrder(orderID, orderCreateTime, orderPayer, orderPurchaseItems, id) {
+  updateOrder(orderID, orderCreateTime, orderPayer, orderPurchaseItems, orderUser, id) {
 
     const obj = {
       orderID: orderID,
       orderCreateTime: orderCreateTime,
       orderPayer: orderPayer,
-      orderPurchaseItems: orderPurchaseItems
+      orderPurchaseItems: orderPurchaseItems,
+      orderUser: orderUser
     };
     return this.http.post(`${this.uri}/update/${id}`, obj);
   }

@@ -23,6 +23,9 @@ import { AngularFontAwesomeModule} from 'angular-font-awesome';
 import { CartshowcaseComponent } from './cartshowcase/cartshowcase.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { SuccessComponent } from './success/success.component';
+import { UserCpComponent } from './user-cp/user-cp.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { SuccessComponent } from './success/success.component';
     CreateAccountComponent,
     FooterComponent,
     CartshowcaseComponent,
-    SuccessComponent
+    SuccessComponent,
+    UserCpComponent,
+    UserEditComponent,
+    UserOrdersComponent
   ],
   imports: [
     BrowserModule,
