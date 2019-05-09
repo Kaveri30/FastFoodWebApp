@@ -1,3 +1,4 @@
+<br>
 <hr>
 <h1>Edit account details</h1>
 <hr>
@@ -28,7 +29,7 @@
   <div class="card-body">
     <form *ngIf="editType === 'password'" [formGroup]="angForm" novalidate>
       <div class="form-group">
-        <label class="col-md-4">Previous password</label>
+        <label class="col-md-8">Previous password</label>
         <input type="password" class="form-control" formControlName="currentPassword" #currentPassword/>
       </div>
       <div *ngIf="angForm.controls['currentPassword'].invalid && (angForm.controls['currentPassword'].dirty || angForm.controls['currentPassword'].touched)" class="alert alert-danger">
