@@ -110,7 +110,7 @@ export class DbGetComponent implements OnInit {
     } else if (dataType === 'accounts') {
       // First we need to change which button is active.
       itemLabel.classList.remove('active');
-      orderLabel.classList.remove('active')
+      orderLabel.classList.remove('active');
       accountLabel.classList.add('active');
       // We set the databaseDisplayData
       window.localStorage.setItem('databaseDisplayData', 'accounts');
@@ -119,7 +119,7 @@ export class DbGetComponent implements OnInit {
     } else if (dataType === 'orders') {
       // First we need to change which button is active.
       itemLabel.classList.remove('active');
-      orderLabel.classList.add('active')
+      orderLabel.classList.add('active');
       accountLabel.classList.remove('active');
       // We set the databaseDisplayData
       window.localStorage.setItem('databaseDisplayData', 'orders');

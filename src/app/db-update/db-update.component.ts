@@ -16,13 +16,11 @@ export class DbUpdateComponent implements OnInit {
   adminLoggedIn = window.localStorage.getItem('adminLoggedIn');
   databaseDisplayData = window.localStorage.getItem('databaseDisplayData');
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private is: ItemService,
-              private fb: FormBuilder,
-              private as: AccountService) {
-                this.createForm();
-              }
+  constructor(private route: ActivatedRoute, private router: Router, private is: ItemService,
+              private fb: FormBuilder, private as: AccountService) {
+
+    this.createForm();
+  }
 
   createForm() {
     if (this.databaseDisplayData === 'items') {
@@ -39,7 +37,6 @@ export class DbUpdateComponent implements OnInit {
         adminRights: ['', Validators.required]
       });
     }
-
   }
 
   updateItem(itemName, itemType, itemPictureLocation, itemPrice) {
