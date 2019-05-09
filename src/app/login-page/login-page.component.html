@@ -2,6 +2,9 @@
 <hr>
 <h1>Account login</h1>
 <hr>
+<div class="alert alert-secondary text-center popup" id="incorrectPassword" style="display:none;">
+    Incorrect login details, create an account or try again.
+</div>
 <div class="card">
   <div class="card-body">
     <form [formGroup]="loginForm" novalidate>

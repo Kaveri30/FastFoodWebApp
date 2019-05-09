@@ -2,6 +2,9 @@
 <hr>
 <h1>Create new account</h1>
 <hr>
+<div class="alert alert-secondary text-center popup" id="existingUser" style="display:none;">
+    Username already exists, please try another!
+</div>
 <div class="card">
   <div class="card-body">
     <form [formGroup]="angForm" novalidate>

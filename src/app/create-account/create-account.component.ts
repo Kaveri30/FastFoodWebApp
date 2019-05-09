@@ -5,6 +5,7 @@ import { AccountService } from '../account.service';
 import { Location } from '@angular/common';
 import Account from '../Account';
 import { sha3_256 } from 'js-sha3';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-create-account',
@@ -52,7 +53,11 @@ export class CreateAccountComponent implements OnInit {
 
     // If account already exists, alert the user.
     if (this.foundMatch === true) {
-      window.alert('Username already exists, please try another!');
+      $('#existingUser').fadeIn(200);
+      // Then, 5000ms later, hide the alert + fade the button in.
+      setTimeout(() => {
+        $('#existingUser').fadeOut(200);
+      }, 5000);
     } else {
       // Else, we add the account to the database.
       this.route.params.subscribe(params => {

@@ -5,6 +5,7 @@ import { AccountService } from '../account.service';
 import { Location } from '@angular/common';
 import Account from '../Account';
 import { sha3_256 } from 'js-sha3';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-login-page',
@@ -61,7 +62,11 @@ doLogin(loginName, loginPassword) {
     this.location.go('home');
     location.reload();
   } else {
-    window.alert('Incorrect login details, create an account or try again.');
+    $('#incorrectPassword').fadeIn(200);
+    // Then, 5000ms later, hide the alert + fade the button in.
+    setTimeout(() => {
+      $('#incorrectPassword').fadeOut(200);
+    }, 5000);
   }
 }
 
